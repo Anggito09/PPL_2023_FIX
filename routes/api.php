@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\API\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::post('/login', [AuthController::class, 'signin']);
+//Route::post('/register', [AuthController::class, 'signup']);
+//Route::post('/pakarregister', [AuthController::class, 'signupPakar']);
+//
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+//
+//Route::get("/pakar", function (Request $request){
+//   $pakar = \App\Models\role::where("role_name", "pakar")->get();
+//    return response($pakar[0]->id);
+//});
+//
+//Route::get("/test", function (Request $request) {
+//   return response("ini test");
+//});
