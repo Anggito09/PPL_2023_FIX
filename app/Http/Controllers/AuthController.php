@@ -23,7 +23,7 @@ class AuthController extends Controller
             Session::put("auth", Auth::user());
             return redirect()->intended('/');
         } else {
-            return back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
+            return back()->withErrors(['email' => 'Invalid email / password.'])->withInput();
         }
     }
 
