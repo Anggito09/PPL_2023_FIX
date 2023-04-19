@@ -14,7 +14,10 @@ class AuthController extends Controller
 {
     public function signin(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
 
         if (Auth::attempt($credentials)) {
             Session::put("auth", Auth::user());
@@ -23,13 +26,20 @@ class AuthController extends Controller
             return back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
         }
     }
-    public function signinform() {
+
+    public function signinform()
+    {
         return $this->render("auth.login");
 //        return View::make("auth.login", ["auth"=>Session::get("auth")]);
     }
 
-    public function register(Request $request){
-        $data = $request->only('name', 'email', 'password');
+    public function register(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
         $data["password"] = Hash::make($data["password"]);
         $data["role_id"] = role::firstWhere("role_name", "customer")->id;
         $user = new User($data);
@@ -39,13 +49,20 @@ class AuthController extends Controller
         return redirect()->intended();
     }
 
-    public function registerform() {
+    public function registerform()
+    {
         Session::regenerate();
-        return View::make("auth.register", ["auth"=>Session::get("auth")]);
+        return View::make("auth.register", ["auth" => Session::get("auth")]);
     }
 
-    public function registerpakar(Request $request){
-        $data = $request->only('name', 'email', 'password', "gelar");
+    public function registerpakar(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'gelar' => 'required'
+        ]);
         $data["password"] = Hash::make($data["password"]);
         $data["role_id"] = role::firstWhere("role_name", "pakar")->id;
         $user = new User($data);
@@ -55,12 +72,14 @@ class AuthController extends Controller
         return redirect()->intended();
     }
 
-    public function registerpakarform() {
+    public function registerpakarform()
+    {
         Session::regenerate();
-        return View::make("auth.registerpakar", ["auth"=>Session::get("auth")]);
+        return View::make("auth.registerpakar", ["auth" => Session::get("auth")]);
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         Session::forget("auth");
         return redirect()->intended();
