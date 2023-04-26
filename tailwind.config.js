@@ -1,25 +1,19 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-    content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-    ],
-    theme: {
-        extend: {
-            dropShadow: {
-                'body': '8px 2px 3px rgba(0,0,0,0.15)'
-            },
-            colors: {
-                'primary': '#498C63',
-                'secondary': '#B0D392',
-                'white': '#EFF6E9'
-            },
-            fontFamily: {
-                'poppins': ['Poppins']
-            },
+module.exports = {
+  content: ["./resources/**/*.blade.php"],
+  theme: {
+    extend: {
+        colors: {
+            "primary": "#CFE3BE",
+            "secondary": "#EEF3DC",
+            "green": "#498B5F",
+            "dark-green": "#025A28"
         },
+        backgroundImage: {
+            'bg1': "url(/images/bg1.png)"
+        }
     },
-    plugins: [],
+  },
+  plugins: [],
 }
 
