@@ -7,7 +7,7 @@
             <p>Marilah mendukung produksi tani dan lakukan investasi jangka panjang bersama SULTAN!</p>
         </div>
         <div class="flex justify-center mt-2">
-            <form action="/investasi" method="post" class="flex flex-col gap-4 w-2/3 items-center bg-secondary rounded-xl p-8">
+            <form action="/investasi" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 w-2/3 items-center bg-secondary rounded-xl p-8">
                 <h2 class="font-bold text-xl">Form Pendaftaran</h2>
                 @csrf
                 <input class="form-input w-2/3" type="text" name="name" id="name" placeholder="Nama">
@@ -19,7 +19,7 @@
                     @endforeach
                 </select>
                 <input class="form-input w-2/3" type="number" name="fund" id="fund" placeholder="Dana yang diinvestasikan">
-                <input class="form-input w-2/3" type="file" name="docs" id="docs" multiple>
+                <input class="form-input w-2/3" type="file" name="docs" id="docs">
                 <button type="submit" class="btn btn-primary px-12">Lanjutkan</button>
             </form>
         </div>

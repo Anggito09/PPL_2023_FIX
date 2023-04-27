@@ -7,7 +7,9 @@ use App\Models\Tani;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class BantutaniController extends Controller
 {
@@ -23,29 +25,44 @@ class BantutaniController extends Controller
             "phone" => "required",
             "descpetani" => "required",
             "desclahan" => "required",
-            "fund" => "required"
+            "fund" => "required",
+            "docs" => "required"
         ]);
         $data["user_id"] = Auth::user()->id;
+        $proposal = $request->file("docs");
+        $data["file"] = ".".$proposal->getClientOriginalExtension();
         $tani = new Tani($data);
         $tani->save();
+        $proposal?->storeAs('public/petani'.$tani->id.".".$proposal->getClientOriginalExtension());
         return redirect("/bantutani");
     }
 
     public function investasiform()
     {
         $petanis = Tani::all();
+        Storage::delete("public/investasi".Auth::user()->id.".temp");
         return view("bantutani.investasi.register", ["petanis" => $petanis]);
     }
 
     public function investasi(Request $request)
     {
+        $request->validate([
+            "name" => "required",
+            "phone" => "required",
+            "fund" => "required",
+            "tani_id" => "required",
+            "docs" => "required"
+        ]);
         $data = $request->validate([
             "name" => "required",
             "phone" => "required",
             "fund" => "required",
-            "tani_id" => "required"
+            "tani_id" => "required",
         ]);
         $data["user_id"] = Auth::user()->id;
+        $proposal = $request->file("docs");
+        $data["file"] = ".".$proposal->getClientOriginalExtension();
+        $proposal?->storeAs('public/investasi'.Auth::user()->id.".temp");
         $request->session()->put("investasipayload", $data);
         return view("bantutani.investasi.confirm");
     }
@@ -56,6 +73,7 @@ class BantutaniController extends Controller
         if ($data) {
             $investasi = new Investasi($data);
             $investasi->save();
+            Storage::move("public/investasi".Auth::user()->id.".temp", "public/investasi".$investasi->id.$data["file"]);
             $request->session()->forget("investasipayload");
         } else {
             return redirect("/investasi");
@@ -82,6 +100,7 @@ class BantutaniController extends Controller
             return view("admin.listinvestasi", ["investasis" => $investasis]);
         }
     }
+
     public function confirminvestasi($id)
     {
         $investasi = Investasi::find($id);
@@ -100,5 +119,10 @@ class BantutaniController extends Controller
             $investasis = Investasi::all();
             return view("bantutani.admin", ["investasis" => $investasis]);
         }
+    }
+
+    public function fileproposal($id){
+        $data = Investasi::find($id);
+        return view("fileloader", ["file"=>"/storage/investasi".$data->id.$data->file]);
     }
 }

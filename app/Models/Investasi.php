@@ -14,10 +14,14 @@ class Investasi extends Model
         "phone",
         "fund",
         "tani_id",
-        "user_id"
+        "user_id",
+        "file"
     ];
 
     public function tani(){
         return $this->belongsTo(Tani::class, "tani_id");
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

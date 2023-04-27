@@ -17,7 +17,11 @@
                            placeholder="Konfirmasi Password">
                 </div>
                 <div class="flex flex-col gap-4">
-                    <input class="form-input w-full" type="text" name="gender" id="gender" placeholder="Gender">
+                    <select class="form-input w-full" name="gender" id="gender" >
+                        <option value selected disabled>Gender</option>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
                     <input class="form-input w-full" type="text" name="rekening" id="rekening"
                            placeholder="Nomor Rekening">
                     <input class="form-input w-full" type="text" name="address" id="address" placeholder="Alamat">
