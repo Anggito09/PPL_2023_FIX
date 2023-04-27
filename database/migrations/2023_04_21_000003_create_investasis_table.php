@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer("fund");
             $table->unsignedBigInteger("user_id");
             $table->boolean("confirmed")->nullable();
+            $table->string("file");
 
             $table->timestamps();
             $table->foreign("tani_id")->references("id")->on("tanis");

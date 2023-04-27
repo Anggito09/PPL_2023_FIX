@@ -31,8 +31,11 @@
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Gender</h2>
-                            <input class="form-input w-full" type="text" name="gender" id="gender" placeholder="Name"
-                                   value="{{$pakar->gender}}">
+                            <select class="form-input w-full" name="gender" id="gender" >
+                                <option value selected disabled>Gender</option>
+                                <option value="L" @if(auth()->user()->gender === "L") selected @endif>Laki-laki</option>
+                                <option value="P" @if(auth()->user()->gender === "P") selected @endif>Perempuan</option>
+                            </select>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Email</h2>

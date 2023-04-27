@@ -53,6 +53,7 @@ Route::middleware(["auth"])->group(function () {
         Route::post("/editpakar/{id}", [\App\Http\Controllers\AdminController::class, "editpakar"]);
 
         Route::get("/confirm/{id}", [\App\Http\Controllers\BantutaniController::class, "confirminvestasi"]);
+        Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
     });
 
     Route::middleware(["isnotpakar"])->group(function () {
