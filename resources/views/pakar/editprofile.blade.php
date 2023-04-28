@@ -1,6 +1,6 @@
 @extends("layouts.main")
 @section("content")
-    <main class="h-screen pt-4 bg-bg1">
+    <main class="h-screen pt-4 bg-bg1 bg-cover">
         @include("components.navbar")
         <div class="flex mx-8 mt-8 gap-8">
             <div class="bg-secondary w-1/4 py-4 rounded-xl">
