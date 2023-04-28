@@ -1,6 +1,6 @@
 @extends("layouts.main")
 @section("content")
-    <main class="min-h-screen bg-bg1 pt-4">
+    <main class="min-h-screen bg-bg1 bg-cover pt-4">
         @include("components.navbar")
         <div class="mt-2 flex flex-col items-center">
             <h1 class="text-3xl font-bold mt-2">Bantu Tani</h1>

@@ -1,5 +1,5 @@
-<header class="flex justify-between mx-4 p-4 rounded-xl bg-secondary">
-    <a href="/" class="font-black">Sultan</a>
+<header class="flex items-center justify-between mx-4 p-4 rounded-xl bg-secondary">
+    <a href="/" class="font-black flex items-center gap-2"><img class="w-5" src="/images/logo.svg" alt="">Sultan</a>
 
     <div class="font-medium flex gap-4">
         <a href="/">Tanya Ahli</a>

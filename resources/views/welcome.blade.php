@@ -1,7 +1,7 @@
 @extends("layouts.main")
 @section("content")
     <main>
-        <section class="pt-4 bg-bg1 h-screen">
+        <section class="pt-4 bg-bg1 bg-cover h-screen">
             @include("components.navbar")
             <div class="px-8 mt-8 flex justify-between items-center">
                 <div class="w-1/2 flex flex-col gap-4">
