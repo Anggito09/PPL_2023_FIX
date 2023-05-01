@@ -30,17 +30,17 @@ class BantutaniController extends Controller
         ]);
         $data["user_id"] = Auth::user()->id;
         $proposal = $request->file("docs");
-        $data["file"] = ".".$proposal->getClientOriginalExtension();
+        $data["file"] = "." . $proposal->getClientOriginalExtension();
         $tani = new Tani($data);
         $tani->save();
-        $proposal?->storeAs('public/petani'.$tani->id.".".$proposal->getClientOriginalExtension());
+        $proposal?->storeAs('public/petani' . $tani->id . "." . $proposal->getClientOriginalExtension());
         return redirect("/bantutani");
     }
 
     public function investasiform()
     {
         $petanis = Tani::all();
-        Storage::delete("public/investasi".Auth::user()->id.".temp");
+        Storage::delete("public/investasi" . Auth::user()->id . ".temp");
         return view("bantutani.investasi.register", ["petanis" => $petanis]);
     }
 
@@ -61,8 +61,8 @@ class BantutaniController extends Controller
         ]);
         $data["user_id"] = Auth::user()->id;
         $proposal = $request->file("docs");
-        $data["file"] = ".".$proposal->getClientOriginalExtension();
-        $proposal?->storeAs('public/investasi'.Auth::user()->id.".temp");
+        $data["file"] = "." . $proposal->getClientOriginalExtension();
+        $proposal?->storeAs('public/investasi' . Auth::user()->id . ".temp");
         $request->session()->put("investasipayload", $data);
         return view("bantutani.investasi.confirm");
     }
@@ -73,7 +73,7 @@ class BantutaniController extends Controller
         if ($data) {
             $investasi = new Investasi($data);
             $investasi->save();
-            Storage::move("public/investasi".Auth::user()->id.".temp", "public/investasi".$investasi->id.$data["file"]);
+            Storage::move("public/investasi" . Auth::user()->id . ".temp", "public/investasi" . $investasi->id . $data["file"]);
             $request->session()->forget("investasipayload");
         } else {
             return redirect("/investasi");
@@ -121,8 +121,43 @@ class BantutaniController extends Controller
         }
     }
 
-    public function fileproposal($id){
+    public function fileproposal($id)
+    {
         $data = Investasi::find($id);
-        return view("fileloader", ["file"=>"/storage/investasi".$data->id.$data->file]);
+        return view("fileloader", ["file" => "/storage/investasi" . $data->id . $data->file]);
+    }
+
+    public function detailbantutani($id)
+    {
+        $tani = Tani::find($id);
+        return view("bantutani/tani/detail", ["tani" => $tani]);
+    }
+
+    public function edittaniform($id)
+    {
+        $tani = Tani::find($id);
+        return view("bantutani/tani/edit", ["tani" => $tani]);
+    }
+
+    public function edittani($id, Request $request)
+    {
+        $data = $request->validate([
+            "name" => "required",
+            "phone" => "required",
+            "descpetani" => "required",
+            "desclahan" => "required",
+            "fund" => "required",
+            "docs" => "nullable"
+        ]);
+        $data["user_id"] = Auth::user()->id;
+        $proposal = $request->file("docs");
+        if ($proposal) {
+            $data["file"] = "." . $proposal->getClientOriginalExtension();
+        }
+        $tani = Tani::find($id);
+        $tani->update($data);
+        $tani->save();
+        $proposal?->storeAs('public/petani' . $tani->id . "." . $proposal->getClientOriginalExtension());
+        return redirect("/bantutani/$id");
     }
 }

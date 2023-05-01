@@ -8,13 +8,18 @@
             <div class="flex gap-4">
                 <div class="flex flex-col gap-4">
                     <input class="form-input w-full" type="text" name="name" id="name" placeholder="Nama">
+                    <p class="text-red-400 text-sm">{{$errors->has("name") ? "*".$errors->first("name") : ""}}</p>
                     <input class="form-input w-full" type="text" name="phone" id="phone" placeholder="Nomor handphone">
+                    <p class="text-red-400 text-sm">{{$errors->has("phone") ? "*".$errors->first("phone") : ""}}</p>
                     <input class="form-input w-full" type="email" name="email" id="email" placeholder="Email">
+                    <p class="text-red-400 text-sm">{{$errors->has("email") ? "*".$errors->first("email") : ""}}</p>
                     <input class="form-input w-full" type="password" name="password" id="password"
                            placeholder="Password">
+                    <p class="text-red-400 text-sm">{{$errors->has("password") ? "*".$errors->first("password") : ""}}</p>
                     <input class="form-input w-full" type="password" name="password_confirmation"
                            id="password_confirmation"
                            placeholder="Konfirmasi Password">
+                    <p class="text-red-400 text-sm">{{$errors->has("password_confirmation") ? "*".$errors->first("password_confirmation") : ""}}</p>
                 </div>
                 <div class="flex flex-col gap-4">
                     <select class="form-input w-full" name="gender" id="gender" >
@@ -22,9 +27,12 @@
                         <option value="L">Laki-laki</option>
                         <option value="P">Perempuan</option>
                     </select>
+                    <p class="text-red-400 text-sm">{{$errors->has("gender") ? "*".$errors->first("gender") : ""}}</p>
                     <input class="form-input w-full" type="text" name="rekening" id="rekening"
                            placeholder="Nomor Rekening">
+                    <p class="text-red-400 text-sm">{{$errors->has("rekening") ? "*".$errors->first("rekening") : ""}}</p>
                     <input class="form-input w-full" type="text" name="address" id="address" placeholder="Alamat">
+                    <p class="text-red-400 text-sm">{{$errors->has("address") ? "*".$errors->first("address") : ""}}</p>
                 </div>
             </div>
             <button class="btn btn-primary w-full">Daftar</button>

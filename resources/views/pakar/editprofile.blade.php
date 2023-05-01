@@ -20,6 +20,7 @@
                             <h2 class="font-medium text-lg">Nama</h2>
                             <input class="form-input w-full" type="text" name="name" id="name" placeholder="Name"
                                    value="{{auth()->user()->name}}">
+                            <p class="text-red-400 text-sm">{{$errors->has("name") ? "*".$errors->first("name") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Gender</h2>
@@ -28,22 +29,26 @@
                                 <option value="L" @if(auth()->user()->gender === "L") selected @endif>Laki-laki</option>
                                 <option value="P" @if(auth()->user()->gender === "P") selected @endif>Perempuan</option>
                             </select>
+                            <p class="text-red-400 text-sm">{{$errors->has("gender") ? "*".$errors->first("gender") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Email</h2>
                             <input class="form-input w-full" type="text" name="email" id="email" placeholder="Name"
                                    value="{{auth()->user()->email}}">
+                            <p class="text-red-400 text-sm">{{$errors->has("email") ? "*".$errors->first("email") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Password</h2>
                             <input class="form-input w-full" type="password" name="password" id="password"
                                    placeholder="Password">
+                            <p class="text-red-400 text-sm">{{$errors->has("password") ? "*".$errors->first("password") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Konfirmasi Password</h2>
                             <input class="form-input w-full" type="password" name="password_confirmation"
                                    id="password_confirmation"
                                    placeholder="Konfirmasi Password">
+                            <p class="text-red-400 text-sm">{{$errors->has("password_confirmation") ? "*".$errors->first("password_confirmation") : ""}}</p>
                         </div>
                     </div>
                     <div class="flex flex-col gap-2 w-1/2">
@@ -51,21 +56,25 @@
                             <h2 class="font-medium text-lg">No Hp</h2>
                             <input class="form-input w-full" type="text" name="phone" id="phone" placeholder="Name"
                                    value="{{auth()->user()->phone}}">
+                            <p class="text-red-400 text-sm">{{$errors->has("phone") ? "*".$errors->first("phone") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Gelar</h2>
                             <input class="form-input w-full" type="text" name="gelar" id="gelar" placeholder="Name"
                                    value="{{auth()->user()->gelar}}">
+                            <p class="text-red-400 text-sm">{{$errors->has("gelar") ? "*".$errors->first("gelar") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">NPWP</h2>
                             <input class="form-input w-full" type="text" name="npwp" id="npwp" placeholder="Name"
                                    value="{{auth()->user()->npwp}}">
+                            <p class="text-red-400 text-sm">{{$errors->has("npwp") ? "*".$errors->first("npwp") : ""}}</p>
                         </div>
                         <div>
                             <h2 class="font-medium text-lg">Alamat</h2>
                             <input class="form-input w-full" type="text" name="address" id="address" placeholder="Name"
                                    value="{{auth()->user()->address}}">
+                            <p class="text-red-400 text-sm">{{$errors->has("address") ? "*".$errors->first("address") : ""}}</p>
                         </div>
                     </div>
                 </div>

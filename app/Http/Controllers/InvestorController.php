@@ -24,6 +24,7 @@ class InvestorController extends Controller
             "email" => "required|unique:users",
             "address" => "required",
             "password" => "required|confirmed",
+            "password_confirmation" => "required|same:password",
             "rekening" => "required"
         ]);
         $biodata["password"] = Hash::make($biodata["password"]);

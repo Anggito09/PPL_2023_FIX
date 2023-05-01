@@ -18,14 +18,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credential = $request->validate([
-            "email" => "required",
+            "email" => "required|exists:users",
             "password" => "required"
         ]);
         if (Auth::attempt($credential)) {
             Auth::login(Auth::user());
             return redirect()->intended();
         }
-        return back();
+        return back()->withErrors(["password"=>"Password salah"]);
     }
 
     public function logout()
@@ -61,6 +61,7 @@ class AuthController extends Controller
                 "address" => "required",
                 "npwp" => "required",
                 "password" => "nullable|confirmed",
+                "password_confirmation" => "nullable|same:password",
             ]);
         } else if (Auth::user()->role->role_name === "investor" || Auth::user()->role->role_name === "petani") {
             $biodata = $request->validate([
@@ -70,14 +71,16 @@ class AuthController extends Controller
                 "email" => "required|unique:users,email," . Auth::user()->id,
                 "address" => "required",
                 "rekening" => "nullable",
-                "password" => "nullable|confirmed"
+                "password" => "nullable|confirmed",
+                "password_confirmation" => "nullable|same:password",
             ]);
         } else if (Auth::user()->role->role_name === "admin") {
             $biodata = $request->validate([
                 "name" => "required",
                 "phone" => "required",
                 "email" => "required|unique:users,email," . Auth::user()->id,
-                "password" => "nullable|confirmed"
+                "password" => "nullable|confirmed",
+                "password_confirmation" => "nullable|same:password",
             ]);
         }
         $biodata["password"] = Hash::make($biodata["password"]);

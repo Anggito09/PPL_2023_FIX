@@ -25,6 +25,7 @@ class PakarController extends Controller
             "email" => "required|unique:users",
             "address" => "required",
             "password" => "required|confirmed",
+            "password_confirmation" => "required|same:password",
             "npwp" => "required",
         ]);
         $biodata["password"] = Hash::make($biodata["password"]);

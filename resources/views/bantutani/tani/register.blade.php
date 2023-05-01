@@ -11,10 +11,15 @@
                 <h2 class="font-bold text-xl">Form Pendaftaran</h2>
                 @csrf
                 <input class="form-input w-full" type="text" name="name" id="name" placeholder="Nama">
+                <p class="text-red-400 text-sm">{{$errors->has("name") ? "*".$errors->first("name") : ""}}</p>
                 <input class="form-input w-full" type="text" name="phone" id="phone" placeholder="Nomor Telepon">
+                <p class="text-red-400 text-sm">{{$errors->has("phone") ? "*".$errors->first("phone") : ""}}</p>
                 <input class="form-input w-full" type="text" name="descpetani" id="descpetani" placeholder="Deskripsi Petani">
+                <p class="text-red-400 text-sm">{{$errors->has("descpetani") ? "*".$errors->first("descpetani") : ""}}</p>
                 <input class="form-input w-full" type="text" name="desclahan" id="desclahan" placeholder="Deskripsi Lahan">
+                <p class="text-red-400 text-sm">{{$errors->has("desclahan") ? "*".$errors->first("desclahan") : ""}}</p>
                 <input class="form-input w-full" type="number" name="fund" id="fund" placeholder="Dana yang dibutuhkan">
+                <p class="text-red-400 text-sm">{{$errors->has("fund") ? "*".$errors->first("fund") : ""}}</p>
                 <input class="form-input w-full" type="file" name="docs" id="docs">
                 <button type="submit" class="btn btn-primary px-12">Daftar</button>
             </form>

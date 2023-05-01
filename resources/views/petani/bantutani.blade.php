@@ -26,8 +26,12 @@
                     <tbody>
                     @foreach($tanis as $tani)
                         <tr>
-                            <td class="text-center">{{$tani->created_at}}</td>
-                            <td class="text-center">{{$tani->fund}}</td>
+                            <td class="text-center">
+                                <a href="/bantutani/{{$tani->id}}">{{$tani->created_at}}</a>
+                            </td>
+                            <td class="text-center">
+                                <a href="/bantutani/{{$tani->id}}">{{$tani->fund}}</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

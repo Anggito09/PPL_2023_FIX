@@ -39,6 +39,7 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/me", [\App\Http\Controllers\AuthController::class, "profile"]);
     Route::get("/editme", [\App\Http\Controllers\AuthController::class, "editprofileform"]);
     Route::post("/editme", [\App\Http\Controllers\AuthController::class, "editprofile"]);
+    Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
@@ -53,7 +54,6 @@ Route::middleware(["auth"])->group(function () {
         Route::post("/editpakar/{id}", [\App\Http\Controllers\AdminController::class, "editpakar"]);
 
         Route::get("/confirm/{id}", [\App\Http\Controllers\BantutaniController::class, "confirminvestasi"]);
-        Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
     });
 
     Route::middleware(["isnotpakar"])->group(function () {
@@ -65,6 +65,9 @@ Route::middleware(["auth"])->group(function () {
         Route::get("/daftartani", [\App\Http\Controllers\BantutaniController::class, "daftartaniform"]);
         Route::post("/daftartani", [\App\Http\Controllers\BantutaniController::class, "daftartani"]);
         Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
+        Route::get("/bantutani/{id}", [\App\Http\Controllers\BantutaniController::class, "detailbantutani"]);
+        Route::get("/edittani/{id}", [\App\Http\Controllers\BantutaniController::class, "edittaniform"]);
+        Route::post("/edittani/{id}", [\App\Http\Controllers\BantutaniController::class, "edittani"]);
     });
     Route::middleware(["isinvestor"])->group(function () {
         Route::get("/investasi", [\App\Http\Controllers\BantutaniController::class, "investasiform"]);
