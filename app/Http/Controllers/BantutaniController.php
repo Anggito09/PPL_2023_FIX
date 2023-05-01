@@ -127,6 +127,12 @@ class BantutaniController extends Controller
         return view("fileloader", ["file" => "/storage/investasi" . $data->id . $data->file]);
     }
 
+    public function filebantutani($id)
+    {
+        $data = Tani::find($id);
+        return response()->file(storage_path("app/public/petani".$data->id.$data->file));
+    }
+
     public function detailbantutani($id)
     {
         $tani = Tani::find($id);

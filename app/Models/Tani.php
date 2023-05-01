@@ -15,6 +15,7 @@ class Tani extends Model
         "descpetani",
         "desclahan",
         "fund",
+        "file",
         "user_id"
     ];
 

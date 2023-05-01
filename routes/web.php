@@ -40,6 +40,7 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/editme", [\App\Http\Controllers\AuthController::class, "editprofileform"]);
     Route::post("/editme", [\App\Http\Controllers\AuthController::class, "editprofile"]);
     Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
+    Route::get("/berkastani/{id}", [\App\Http\Controllers\BantutaniController::class, "filebantutani"]);
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
