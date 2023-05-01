@@ -22,6 +22,7 @@ class AdminController extends Controller
             "phone" => "required",
             "email" => "required|unique:users",
             "password" => "required|confirmed",
+            "password_confirmation" => "required|same:password",
         ]);
         $biodata["password"] = Hash::make($biodata["password"]);
         $biodata["role_id"] = Role::where("role_name", "admin")->first()->id;
@@ -64,9 +65,9 @@ class AdminController extends Controller
             "phone" => "required",
             "email" => "required|unique:users,email," . $user->id,
             "address" => "required",
-            "rekening" => "nullable",
+            "rekening" => "required",
             "password" => "nullable|confirmed",
-//            "premium" => "nullable"
+            "password_confirmation" => "nullable|same:password",
         ]);
         if ($biodata["password"]) {
             $biodata["password"] = Hash::make($biodata["password"]);
@@ -97,8 +98,9 @@ class AdminController extends Controller
             "phone" => "required",
             "email" => "required|unique:users,email," . $user->id,
             "address" => "required",
-            "rekening" => "nullable",
+            "rekening" => "required",
             "password" => "nullable|confirmed",
+            "password_confirmation" => "nullable|same:password",
         ]);
         if ($biodata["password"]) {
             $biodata["password"] = Hash::make($biodata["password"]);
@@ -126,6 +128,7 @@ class AdminController extends Controller
             "email" => "required|unique:users,email,".$user->id,
             "address" => "required",
             "password" => "nullable|confirmed",
+            "password_confirmation" => "nullable|same:password",
             "npwp" => "required",
         ]);
         if ($biodata["password"]) {

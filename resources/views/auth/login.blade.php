@@ -1,5 +1,6 @@
 @extends("layouts.main")
 @section("content")
+
     <main class="flex h-screen items-center justify-center bg-[#EFF6E9]">
         <div class="w-2/3 h-5/6 flex">
             <form action="/login" method="POST"
@@ -8,8 +9,10 @@
                 @csrf
                 <div class="flex flex-col w-full gap-4">
                     <input class="form-input w-full" type="email" name="email" id="email" placeholder="Email">
+                    <p class="text-red-400 text-sm">{{$errors->has("email") ? "*".$errors->first("email") : ""}}</p>
                     <input class="form-input w-full" type="password" name="password" id="password"
                            placeholder="Password">
+                    <p class="text-red-400 text-sm">{{$errors->has("password") ? "*".$errors->first("password") : ""}}</p>
                 </div>
                 <button class="btn btn-primary px-12 w-full" type="submit">Masuk</button>
             </form>
