@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col items-end justify-end">
-                                <a href="/editinvestor/{{$investor->id}}" class="btn btn-primary px-12">Ubah</a>
+                                <a href="/editinvestor/{{$investor->id}}" class="btn btn-primary px-12">Edit</a>
                             </div>
                         </div>
                     @endforeach
