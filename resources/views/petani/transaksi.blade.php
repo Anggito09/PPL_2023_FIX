@@ -11,7 +11,7 @@
                 </div>
                 <div class="flex flex-col gap-2">
                     <a href="/listbantutani" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data
-                        Transaksi Akun</a>
+                        Investasi</a>
                     <a href="/listinvestasi" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data
                         Transaksi Investasi</a>
                 </div>
