@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <td>Berkas</td>
-                            <td class="flex items-center gap-4">: <a href="/proposalinvestor/{{$tani->id}}" target="_blank" class="flex items-center btn bg-primary text-green px-4 text-sm"><span class="material-symbols-outlined">description</span>Documents</a></td>
+                            <td class="flex items-center gap-4">: <a href="/berkaspendukung/{{$tani->id}}" target="_blank" class="flex items-center btn bg-primary text-green px-4 text-sm"><span class="material-symbols-outlined">description</span>Documents</a></td>
                         </tr>
                     </table>
                 </div>
