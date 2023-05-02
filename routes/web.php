@@ -39,7 +39,7 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/me", [\App\Http\Controllers\AuthController::class, "profile"]);
     Route::get("/editme", [\App\Http\Controllers\AuthController::class, "editprofileform"]);
     Route::post("/editme", [\App\Http\Controllers\AuthController::class, "editprofile"]);
-    Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
+    Route::get("/berkaspendukung/{id}", [\App\Http\Controllers\BantutaniController::class, "fileberkaspendukung"]);
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
