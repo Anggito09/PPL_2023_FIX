@@ -10,7 +10,7 @@
                     <h3 class="capitalize">{{auth()->user()->role->role_name}}</h3>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <a href="/listbantutani" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data Transaksi Akun</a>
+                    <a href="/listbantutani" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data Investasi</a>
                     <a href="/listinvestasi" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data Transaksi Investasi</a>
                 </div>
             </div>
