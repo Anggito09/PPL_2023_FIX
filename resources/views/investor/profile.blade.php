@@ -30,7 +30,7 @@
                             <p>{{auth()->user()->email}}</p>
                         </div>
                         <div>
-                            <h2 class="font-medium text-lg">No Telepon</h2>
+                            <h2 class="font-medium text-lg">Nomor handphone</h2>
                             <p>{{auth()->user()->phone}}</p>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <p>{{auth()->user()->address}}</p>
                         </div>
                         <div>
-                            <h2 class="font-medium text-lg">No Rekening</h2>
+                            <h2 class="font-medium text-lg">Nomor Rekening</h2>
                             <p>{{auth()->user()->rekening}}</p>
                         </div>
                     </div>
