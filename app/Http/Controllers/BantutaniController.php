@@ -29,11 +29,11 @@ class BantutaniController extends Controller
             "docs" => "required"
         ]);
         $data["user_id"] = Auth::user()->id;
-        $proposal = $request->file("docs");
-        $data["file"] = "." . $proposal->getClientOriginalExtension();
+        $berkaspendukung = $request->file("docs");
+        $data["file"] = "." . $berkaspendukung->getClientOriginalExtension();
         $tani = new Tani($data);
         $tani->save();
-        $proposal?->storeAs('public/petani' . $tani->id . "." . $proposal->getClientOriginalExtension());
+        $berkaspendukung?->storeAs('public/petani' . $tani->id . "." . $berkaspendukung->getClientOriginalExtension());
         return redirect("/bantutani");
     }
 
@@ -60,9 +60,9 @@ class BantutaniController extends Controller
             "tani_id" => "required",
         ]);
         $data["user_id"] = Auth::user()->id;
-        $proposal = $request->file("docs");
-        $data["file"] = "." . $proposal->getClientOriginalExtension();
-        $proposal?->storeAs('public/investasi' . Auth::user()->id . ".temp");
+        $berkaspendukung = $request->file("docs");
+        $data["file"] = "." . $berkaspendukung->getClientOriginalExtension();
+        $berkaspendukung?->storeAs('public/investasi' . Auth::user()->id . ".temp");
         $request->session()->put("investasipayload", $data);
         return view("bantutani.investasi.confirm");
     }
@@ -78,7 +78,7 @@ class BantutaniController extends Controller
         } else {
             return redirect("/investasi");
         }
-        return redirect("https://wa.me/6282340968471");
+        return redirect("https://wa.me/62895324404095");
     }
 
     public function listbantutani()
@@ -121,7 +121,7 @@ class BantutaniController extends Controller
         }
     }
 
-    public function fileproposal($id)
+    public function fileberkaspendukung($id)
     {
         $data = Investasi::find($id);
         return view("fileloader", ["file" => "/storage/investasi" . $data->id . $data->file]);
@@ -150,14 +150,14 @@ class BantutaniController extends Controller
             "docs" => "nullable"
         ]);
         $data["user_id"] = Auth::user()->id;
-        $proposal = $request->file("docs");
-        if ($proposal) {
-            $data["file"] = "." . $proposal->getClientOriginalExtension();
+        $berkaspendukung = $request->file("docs");
+        if ($berkaspendukung) {
+            $data["file"] = "." . $berkaspendukung->getClientOriginalExtension();
         }
         $tani = Tani::find($id);
         $tani->update($data);
         $tani->save();
-        $proposal?->storeAs('public/petani' . $tani->id . "." . $proposal->getClientOriginalExtension());
+        $berkaspendukung?->storeAs('public/petani' . $tani->id . "." . $berkaspendukung->getClientOriginalExtension());
         return redirect("/bantutani/$id");
     }
 }
