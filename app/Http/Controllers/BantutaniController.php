@@ -22,7 +22,7 @@ class BantutaniController extends Controller
     {
         $data = $request->validate([
             "name" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "descpetani" => "required",
             "desclahan" => "required",
             "fund" => "required",
@@ -48,14 +48,14 @@ class BantutaniController extends Controller
     {
         $request->validate([
             "name" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "fund" => "required",
             "tani_id" => "required",
             "docs" => "required"
         ]);
         $data = $request->validate([
             "name" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "fund" => "required",
             "tani_id" => "required",
         ]);
@@ -83,8 +83,13 @@ class BantutaniController extends Controller
 
     public function listbantutani()
     {
-        $tanis = Auth::user()->tani;
-        return view("petani.bantutani", ["tanis" => $tanis]);
+        if (Auth::user()->role->role_name === "petani") {
+            $tanis = Auth::user()->tani;
+            return view("petani.bantutani", ["tanis" => $tanis]);
+        } else if (Auth::user()->role->role_name === "pakar") {
+            $tanis = Tani::all();
+            return view("pakar.bantutani", ["tanis" => $tanis]);
+        }
     }
 
     public function listinvestasi()
@@ -127,6 +132,12 @@ class BantutaniController extends Controller
         return view("fileloader", ["file" => "/storage/investasi" . $data->id . $data->file]);
     }
 
+    public function filebantutani($id)
+    {
+        $data = Tani::find($id);
+        return response()->file(storage_path("app/public/petani" . $data->id . $data->file));
+    }
+
     public function detailbantutani($id)
     {
         $tani = Tani::find($id);
@@ -143,7 +154,7 @@ class BantutaniController extends Controller
     {
         $data = $request->validate([
             "name" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "descpetani" => "required",
             "desclahan" => "required",
             "fund" => "required",

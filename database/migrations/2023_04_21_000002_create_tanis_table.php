@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("descpetani");
             $table->string("desclahan");
             $table->integer("fund");
+            $table->string("file");
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users");

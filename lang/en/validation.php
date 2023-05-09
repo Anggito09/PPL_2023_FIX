@@ -175,7 +175,8 @@ return [
             "confirmed" => "Password tidak tervalidasi"
         ],
         "phone" => [
-            "required" => "Nomor Telepon harus diisi"
+            "required" => "Nomor Telepon harus diisi",
+            "regex" => "Format nomor telepon salah"
         ],
         "password_confirmation" => [
             "required" => "Konfirmasi password harus diisi",
@@ -190,8 +191,14 @@ return [
         "rekening" => [
             "required" => "Rekening harus diisi"
         ],
-        "address" => [
-            "required" => "Alamat harus diisi"
+        "kecamatan" => [
+            "required" => "Kecamatan harus diisi"
+        ],
+        "kabupaten" => [
+            "required" => "Kabupaten harus diisi"
+        ],
+        "provinsi" => [
+            "required" => "Provinsi harus diisi"
         ],
         "gelar" => [
             "required" => "Gelar harus diisi"

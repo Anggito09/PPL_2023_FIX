@@ -15,8 +15,13 @@ class Tani extends Model
         "descpetani",
         "desclahan",
         "fund",
+        "file",
         "user_id"
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
     public function investasi(){
         return $this->hasMany(Investasi::class, "tani_id");
