@@ -9,7 +9,7 @@
                 <div class="w-full flex gap-4">
                     <div class="flex flex-col gap-4 w-1/2">
                         <div>
-                            <h2 class="font-medium text-lg">ID Investor</h2>
+                            <h2 class="font-medium text-lg">ID Pakar</h2>
                             <p>{{auth()->user()->id}}</p>
                         </div>
                         <div>
@@ -21,7 +21,7 @@
                             <p>{{auth()->user()->email}}</p>
                         </div>
                         <div>
-                            <h2 class="font-medium text-lg">No Telepon</h2>
+                            <h2 class="font-medium text-lg">Nomor handphone</h2>
                             <p>{{auth()->user()->phone}}</p>
                         </div>
                     </div>
