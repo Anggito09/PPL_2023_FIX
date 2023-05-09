@@ -39,7 +39,7 @@
                         </tr>
                     </table>
                 </div>
-                <a href="/edittani/{{$tani->id}}" type="submit" class="btn btn-primary px-12">Edit</a>
+                <a href="/edittani/{{$tani->id}}" class="btn btn-primary px-12">Edit</a>
             </div>
         </div>
     </main>
