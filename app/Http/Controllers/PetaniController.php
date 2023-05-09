@@ -20,9 +20,12 @@ class PetaniController extends Controller
         $biodata = $request->validate([
             "name" => "required",
             "gender" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "email" => "required|unique:users",
-            "address" => "required",
+//            "address" => "required",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required",
             "password" => "required|confirmed",
             "password_confirmation" => "required|same:password",
             "rekening" => "required"

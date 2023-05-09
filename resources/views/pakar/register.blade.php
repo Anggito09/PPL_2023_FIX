@@ -13,6 +13,8 @@
                     <p class="text-red-400 text-sm">{{$errors->has("phone") ? "*".$errors->first("phone") : ""}}</p>
                     <input class="form-input w-full" type="email" name="email" id="email" placeholder="Email">
                     <p class="text-red-400 text-sm">{{$errors->has("email") ? "*".$errors->first("email") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="npwp" id="npwp" placeholder="NPWP">
+                    <p class="text-red-400 text-sm">{{$errors->has("npwp") ? "*".$errors->first("npwp") : ""}}</p>
                     <input class="form-input w-full" type="password" name="password" id="password"
                            placeholder="Password">
                     <p class="text-red-400 text-sm">{{$errors->has("password") ? "*".$errors->first("password") : ""}}</p>
@@ -30,10 +32,12 @@
                     <p class="text-red-400 text-sm">{{$errors->has("gender") ? "*".$errors->first("gender") : ""}}</p>
                     <input class="form-input w-full" type="text" name="gelar" id="gelar" placeholder="Gelar">
                     <p class="text-red-400 text-sm">{{$errors->has("gelar") ? "*".$errors->first("gelar") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="address" id="address" placeholder="Alamat">
-                    <p class="text-red-400 text-sm">{{$errors->has("address") ? "*".$errors->first("address") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="npwp" id="npwp" placeholder="NPWP">
-                    <p class="text-red-400 text-sm">{{$errors->has("npwp") ? "*".$errors->first("npwp") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
+                    <p class="text-red-400 text-sm">{{$errors->has("kecamatan") ? "*".$errors->first("kecamatan") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="kabupaten" id="kabupaten" placeholder="Kabupaten">
+                    <p class="text-red-400 text-sm">{{$errors->has("kabupaten") ? "*".$errors->first("kabupaten") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="provinsi" id="provinsi" placeholder="Provinsi">
+                    <p class="text-red-400 text-sm">{{$errors->has("provinsi") ? "*".$errors->first("provinsi") : ""}}</p>
                 </div>
             </div>
             <button class="btn btn-primary w-full">Daftar</button>

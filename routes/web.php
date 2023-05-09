@@ -35,12 +35,19 @@ Route::middleware(["guest"])->group(function () {
 });
 
 Route::middleware(["auth"])->group(function () {
+    Route::get("/dp/{name}", function ($name) {
+        if (\Illuminate\Support\Facades\Storage::has("/dp/" . $name)) {
+            return response()->file(storage_path("/app/dp/" . $name));
+        }
+        abort(404);
+    });
     Route::get("/logout", [\App\Http\Controllers\AuthController::class, "logout"]);
     Route::get("/me", [\App\Http\Controllers\AuthController::class, "profile"]);
     Route::get("/editme", [\App\Http\Controllers\AuthController::class, "editprofileform"]);
     Route::post("/editme", [\App\Http\Controllers\AuthController::class, "editprofile"]);
     Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
     Route::get("/berkastani/{id}", [\App\Http\Controllers\BantutaniController::class, "filebantutani"]);
+    Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
@@ -65,7 +72,6 @@ Route::middleware(["auth"])->group(function () {
     Route::middleware(["ispetani"])->group(function () {
         Route::get("/daftartani", [\App\Http\Controllers\BantutaniController::class, "daftartaniform"]);
         Route::post("/daftartani", [\App\Http\Controllers\BantutaniController::class, "daftartani"]);
-        Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
         Route::get("/bantutani/{id}", [\App\Http\Controllers\BantutaniController::class, "detailbantutani"]);
         Route::get("/edittani/{id}", [\App\Http\Controllers\BantutaniController::class, "edittaniform"]);
         Route::post("/edittani/{id}", [\App\Http\Controllers\BantutaniController::class, "edittani"]);

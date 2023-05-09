@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $biodata = $request->validate([
             "name" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "email" => "required|unique:users",
             "password" => "required|confirmed",
             "password_confirmation" => "required|same:password",
@@ -62,10 +62,11 @@ class AdminController extends Controller
         $biodata = $request->validate([
             "name" => "required",
             "gender" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "email" => "required|unique:users,email," . $user->id,
-            "address" => "required",
-            "rekening" => "required",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required","rekening" => "required",
             "password" => "nullable|confirmed",
             "password_confirmation" => "nullable|same:password",
         ]);
@@ -95,10 +96,11 @@ class AdminController extends Controller
         $biodata = $request->validate([
             "name" => "required",
             "gender" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "email" => "required|unique:users,email," . $user->id,
-            "address" => "required",
-            "rekening" => "required",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required","rekening" => "required",
             "password" => "nullable|confirmed",
             "password_confirmation" => "nullable|same:password",
         ]);
@@ -123,11 +125,12 @@ class AdminController extends Controller
         $biodata = $request->validate([
             "name" => "required",
             "gender" => "required",
-            "phone" => "required",
+            "phone" => "required|regex:/(08)[0-9]{10}/",
             "gelar" => "required",
             "email" => "required|unique:users,email,".$user->id,
-            "address" => "required",
-            "password" => "nullable|confirmed",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required","password" => "nullable|confirmed",
             "password_confirmation" => "nullable|same:password",
             "npwp" => "required",
         ]);

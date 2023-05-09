@@ -31,8 +31,12 @@
                     <input class="form-input w-full" type="text" name="rekening" id="rekening"
                            placeholder="Nomor Rekening">
                     <p class="text-red-400 text-sm">{{$errors->has("rekening") ? "*".$errors->first("rekening") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="address" id="address" placeholder="Alamat">
-                    <p class="text-red-400 text-sm">{{$errors->has("address") ? "*".$errors->first("address") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
+                    <p class="text-red-400 text-sm">{{$errors->has("kecamatan") ? "*".$errors->first("kecamatan") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="kabupaten" id="kabupaten" placeholder="Kabupaten">
+                    <p class="text-red-400 text-sm">{{$errors->has("kabupaten") ? "*".$errors->first("kabupaten") : ""}}</p>
+                    <input class="form-input w-full" type="text" name="provinsi" id="provinsi" placeholder="Provinsi">
+                    <p class="text-red-400 text-sm">{{$errors->has("provinsi") ? "*".$errors->first("provinsi") : ""}}</p>
                 </div>
             </div>
             <button class="btn btn-primary w-full">Daftar</button>
