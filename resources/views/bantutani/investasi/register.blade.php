@@ -21,6 +21,7 @@
                                 <p>{{$tani->desclahan}}</p>
                                 <h3 class="font-bold">Dana yang dibutuhkan:</h3>
                                 <p>Rp.{{$tani->fund}}</p>
+                                <a href="/berkastani/{{$tani->id}}" class="self-start bg-secondary border px-4 py-1 rounded-lg">file</a>
                                 <button class="px-4 py-2 bg-green text-white rounded" data-modal-hide="listPetani" onclick="selectTani('{{$tani->id}}','{{$tani->name}}')">Pilih</button>
                             </div>
                         </div>

@@ -30,10 +30,9 @@ class BantutaniController extends Controller
         ]);
         $data["user_id"] = Auth::user()->id;
         $proposal = $request->file("docs");
-        $data["file"] = "." . $proposal->getClientOriginalExtension();
+        $data["file"] = Storage::put("tani", $proposal);
         $tani = new Tani($data);
         $tani->save();
-        $proposal?->storeAs('public/petani' . $tani->id . "." . $proposal->getClientOriginalExtension());
         return redirect("/bantutani");
     }
 
@@ -61,8 +60,7 @@ class BantutaniController extends Controller
         ]);
         $data["user_id"] = Auth::user()->id;
         $proposal = $request->file("docs");
-        $data["file"] = "." . $proposal->getClientOriginalExtension();
-        $proposal?->storeAs('public/investasi' . Auth::user()->id . ".temp");
+        $data["file"] = Storage::put("temp", $proposal);
         $request->session()->put("investasipayload", $data);
         return view("bantutani.investasi.confirm");
     }
@@ -71,9 +69,10 @@ class BantutaniController extends Controller
     {
         $data = $request->session()->get("investasipayload");
         if ($data) {
+            Storage::move($data["file"], "investasi/".substr($data["file"],5));
+            $data["file"] ="investasi/".substr($data["file"],5);
             $investasi = new Investasi($data);
             $investasi->save();
-            Storage::move("public/investasi" . Auth::user()->id . ".temp", "public/investasi" . $investasi->id . $data["file"]);
             $request->session()->forget("investasipayload");
         } else {
             return redirect("/investasi");
@@ -86,9 +85,6 @@ class BantutaniController extends Controller
         if (Auth::user()->role->role_name === "petani") {
             $tanis = Auth::user()->tani;
             return view("petani.bantutani", ["tanis" => $tanis]);
-        } else if (Auth::user()->role->role_name === "pakar") {
-            $tanis = Tani::all();
-            return view("pakar.bantutani", ["tanis" => $tanis]);
         }
     }
 
@@ -123,19 +119,28 @@ class BantutaniController extends Controller
         } else if (Auth::user()->role->role_name === "admin") {
             $investasis = Investasi::all();
             return view("bantutani.admin", ["investasis" => $investasis]);
+        } else if (Auth::user()->role->role_name === "pakar") {
+            $tanis = Tani::all();
+            return view("bantutani.listtani", ["tanis" => $tanis]);
         }
     }
 
     public function fileproposal($id)
     {
         $data = Investasi::find($id);
-        return view("fileloader", ["file" => "/storage/investasi" . $data->id . $data->file]);
+        if (Storage::has($data->file)) {
+            return response()->file(storage_path("app/" . $data->file));
+        }
+        abort(404);
     }
 
     public function filebantutani($id)
     {
         $data = Tani::find($id);
-        return response()->file(storage_path("app/public/petani" . $data->id . $data->file));
+        if (Storage::has($data->file)) {
+            return response()->file(storage_path("app/" . $data->file));
+        }
+        abort(404);
     }
 
     public function detailbantutani($id)
@@ -160,12 +165,13 @@ class BantutaniController extends Controller
             "fund" => "required",
             "docs" => "nullable"
         ]);
+        $tani = Tani::find($id);
         $data["user_id"] = Auth::user()->id;
         $proposal = $request->file("docs");
         if ($proposal) {
-            $data["file"] = "." . $proposal->getClientOriginalExtension();
+            Storage::delete($tani->file);
+            $data["file"] = Storage::put("tani", $proposal);
         }
-        $tani = Tani::find($id);
         $tani->update($data);
         $tani->save();
         $proposal?->storeAs('public/petani' . $tani->id . "." . $proposal->getClientOriginalExtension());
