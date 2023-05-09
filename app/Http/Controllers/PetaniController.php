@@ -38,3 +38,4 @@ class PetaniController extends Controller
         return redirect()->intended();
     }
 }
+ 
