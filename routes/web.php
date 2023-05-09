@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get("/home", function () {
+    return redirect()->intended();
+});
+
 Route::middleware(["guest"])->group(function () {
     Route::prefix("/register")->group(function () {
         Route::get("/admin", [\App\Http\Controllers\AdminController::class, "registerform"]);
@@ -48,6 +52,7 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/proposalinvestor/{id}", [\App\Http\Controllers\BantutaniController::class, "fileproposal"]);
     Route::get("/berkastani/{id}", [\App\Http\Controllers\BantutaniController::class, "filebantutani"]);
     Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
+    Route::get("/bantutani", [\App\Http\Controllers\BantutaniController::class, "index"]);
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
@@ -65,7 +70,6 @@ Route::middleware(["auth"])->group(function () {
     });
 
     Route::middleware(["isnotpakar"])->group(function () {
-        Route::get("/bantutani", [\App\Http\Controllers\BantutaniController::class, "index"]);
         Route::get("/listinvestasi", [\App\Http\Controllers\BantutaniController::class, "listinvestasi"]);
     });
 
