@@ -165,9 +165,9 @@ class BantutaniController extends Controller
             "fund" => "required",
             "docs" => "nullable"
         ]);
-        $tani = Tani::find($id);
         $data["user_id"] = Auth::user()->id;
         $proposal = $request->file("docs");
+        $tani = Tani::find($id);
         if ($proposal) {
             Storage::delete($tani->file);
             $data["file"] = Storage::put("tani", $proposal);
