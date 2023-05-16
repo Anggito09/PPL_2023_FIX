@@ -53,7 +53,15 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/berkastani/{id}", [\App\Http\Controllers\BantutaniController::class, "filebantutani"]);
     Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
     Route::get("/bantutani", [\App\Http\Controllers\BantutaniController::class, "index"]);
+    Route::get("/ruangdiskusi", [\App\Http\Controllers\DiskusiController::class, "index"]);
+    Route::get("/chat/{id}", [\App\Http\Controllers\DiskusiController::class, "chat"]);
+
+    Route::post("/pushchat/{id}", [\App\Http\Controllers\DiskusiController::class, "pushChat"]);
+    Route::get("/fetchchat/{id}", [\App\Http\Controllers\DiskusiController::class, "fetchChat"]);
+
     Route::middleware(["isadmin"])->group(function () {
+        Route::get("/activatechat/{id}", [\App\Http\Controllers\DiskusiController::class, "activate"]);
+
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
         Route::post("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetani"]);
@@ -71,6 +79,16 @@ Route::middleware(["auth"])->group(function () {
 
     Route::middleware(["isnotpakar"])->group(function () {
         Route::get("/listinvestasi", [\App\Http\Controllers\BantutaniController::class, "listinvestasi"]);
+    });
+
+    Route::middleware(["ispetaniorinvestor"])->group(function () {
+        Route::get("/riwayatchat", [\App\Http\Controllers\DiskusiController::class, "riwayat"]);
+        Route::get("/listtransaksi", [\App\Http\Controllers\PetaniController::class, "listtransaksi"]);
+        Route::get("/startchat/{id}", [\App\Http\Controllers\DiskusiController::class, "startchat"]);
+        Route::get("/pricelist", [\App\Http\Controllers\DiskusiController::class, "pricelist"]);
+        Route::post("/premium", [\App\Http\Controllers\DiskusiController::class, "createPremium"]);
+        Route::get("/confirmpayment", [\App\Http\Controllers\DiskusiController::class, "confirmform"]);
+        Route::post("/confirmpayment", [\App\Http\Controllers\DiskusiController::class, "confirm"]);
     });
 
     Route::middleware(["ispetani"])->group(function () {
