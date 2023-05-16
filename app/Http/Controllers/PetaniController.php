@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Investasi;
 use App\Models\Role;
+use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,5 +39,11 @@ class PetaniController extends Controller
         Auth::login($user);
         return redirect()->intended();
     }
+
+    public function listtransaksi()
+    {
+        $transaksis = Auth::user()->transaksi;
+        return view("petani.transaksi", ["transaksis"=>$transaksis]);
+    }
 }
- 
+

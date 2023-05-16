@@ -45,6 +45,12 @@ class User extends Authenticatable
     public function tani(){
         return $this->hasMany(Tani::class);
     }
+    public function transaksi(){
+        return $this->hasMany(Transaksi::class);
+    }
+    public function chatSession(){
+        return $this->hasMany(ChatSession::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -4,7 +4,7 @@
     <div class="font-medium flex gap-4">
         <a href="/">Tanya Ahli</a>
         <a href="/bantutani">Bantu Tani</a>
-        <a href="/">Ruang Diskusi</a>
+        <a href="{{auth()->user()->role->role_name === "pakar"?"/riwayatchat":"/ruangdiskusi"}}">Ruang Diskusi</a>
         <a href="/">Artikel</a>
         <a href="/me">Profil</a>
     </div>

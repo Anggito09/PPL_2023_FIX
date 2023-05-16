@@ -6,6 +6,7 @@ use App\Http\Middleware\isAdmin;
 use App\Http\Middleware\isInvestor;
 use App\Http\Middleware\isNotPakar;
 use App\Http\Middleware\isPetani;
+use App\Http\Middleware\isPetaniOrInvestor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -73,6 +74,7 @@ class Kernel extends HttpKernel
         "isadmin" => isAdmin::class,
         "ispetani" => isPetani::class,
         "isinvestor" => isInvestor::class,
-        "isnotpakar" => isNotPakar::class
+        "isnotpakar" => isNotPakar::class,
+        "ispetaniorinvestor" => isPetaniOrInvestor::class
     ];
 }

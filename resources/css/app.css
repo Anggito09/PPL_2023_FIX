@@ -21,3 +21,7 @@
 .link{
     @apply underline text-green
 }
+
+.chat{
+    @apply flex flex-col bg-secondary p-2 rounded-xl;
+}

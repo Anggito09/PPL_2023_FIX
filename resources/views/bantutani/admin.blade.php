@@ -13,7 +13,7 @@
                     <div
                         class="flex flex-col items-center gap-4 bg-secondary rounded-lg p-8 w-full rounded-xl shadow dark:bg-gray-700">
                         <h1 class="font-bold text-2xl">Data Investasi</h1>
-                        <div class="p-2 bg-primary text-secondary rounded-xl w-full">
+                        <div class="p-2 bg-primary text-dark-green rounded-xl w-full">
                             <table class="border-separate border-spacing-2">
                                 <tr>
                                     <td>Nama</td>
@@ -37,14 +37,14 @@
                                 </tr>
                                 <tr>
                                     <td>Proposal</td>
-                                    <td>: <a href="" target="_blank" class="flex items-center btn bg-secondary text-green px-2"
+                                    <td class="flex items-center gap-1">: <a href="" target="_blank" class="flex items-center btn bg-secondary text-green px-2"
                                              id="modal-proposal"><span class="material-symbols-outlined">description</span>proposal</a></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="mt-2 flex justify-end w-full">
                             <input type="hidden" id="modal-id" value="">
-                            <select id="modal-status" onchange="confirm()" class="bg-primary text-secondary rounded-xl">
+                            <select id="modal-status" onchange="confirm()" class="bg-primary text-dark-green rounded-xl">
                                 <option value="selesai">Selesai</option>
                                 <option value="batal">Batal</option>
                             </select>
@@ -69,7 +69,7 @@
                         <tr>
                             <td class="text-center flex justify-center bg-primary p-2 rounded-s-xl">
                                 <button
-                                    onclick="setmodal({name:'{{$investasi->name}}', phone:'{{$investasi->phone}}', address:'{{$investasi->user->address}}', fund:'{{$investasi->fund}}', id:'{{$investasi->id}}', status:@if($investasi->confirmed) 'selesai' @else 'batal' @endif})"
+                                    onclick="setmodal({name:'{{$investasi->name}}', phone:'{{$investasi->phone}}', address:'{{$investasi->user->kecamatan.",".$investasi->user->kabupaten.",".$investasi->user->provinsi}}', fund:'{{$investasi->fund}}', id:'{{$investasi->id}}', status:@if($investasi->confirmed) 'selesai' @else 'batal' @endif})"
                                     data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                                     class="flex gap-4">
                                     <span class="material-symbols-outlined">visibility</span>

@@ -4,7 +4,8 @@
         @include("components.navbar")
         <div class="mt-2 flex flex-col items-center">
             <h1 class="text-3xl font-bold mt-2">Syarat dan Ketentuan</h1>
-            <p>Nikmati kemudahan untuk berinvestasi dengan lebih mudah untuk pertanianmu di Fitur Bantu Tani. Apa saja sih keuntungan Bantu Tani di SULTAN?</p>
+            <p>Nikmati kemudahan untuk berinvestasi dengan lebih mudah untuk pertanianmu di Fitur Bantu Tani. Apa saja
+                sih keuntungan Bantu Tani di SULTAN?</p>
         </div>
         <div class="flex flex-col gap-4 items-center mt-2 bg-secondary mx-8 rounded-xl p-8">
             <h2 class="text-xl font-bold">Syarat dan Ketentuan Umum Investasi SULTAN</h2>
@@ -37,9 +38,10 @@
                     segala syarat & ketentuan yang tertera.
                 </li>
             </ol>
-
+            <a href="/document/Syarat ketentuan.pdf" target="_blank" class="link">Download Dokumen Syarat dan Ketentuan
+                (S&K)</a>
             <a href="/investasiconfirm" class="btn btn-primary px-12">Lanjutkan</a>
         </div>
     </main>
 @stop
- 
+
