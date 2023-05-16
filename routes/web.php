@@ -58,6 +58,7 @@ Route::middleware(["auth"])->group(function () {
 
     Route::post("/pushchat/{id}", [\App\Http\Controllers\DiskusiController::class, "pushChat"]);
     Route::get("/fetchchat/{id}", [\App\Http\Controllers\DiskusiController::class, "fetchChat"]);
+    Route::get("/riwayatchat", [\App\Http\Controllers\DiskusiController::class, "riwayat"]);
 
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/activatechat/{id}", [\App\Http\Controllers\DiskusiController::class, "activate"]);
@@ -82,7 +83,6 @@ Route::middleware(["auth"])->group(function () {
     });
 
     Route::middleware(["ispetaniorinvestor"])->group(function () {
-        Route::get("/riwayatchat", [\App\Http\Controllers\DiskusiController::class, "riwayat"]);
         Route::get("/listtransaksi", [\App\Http\Controllers\PetaniController::class, "listtransaksi"]);
         Route::get("/startchat/{id}", [\App\Http\Controllers\DiskusiController::class, "startchat"]);
         Route::get("/pricelist", [\App\Http\Controllers\DiskusiController::class, "pricelist"]);

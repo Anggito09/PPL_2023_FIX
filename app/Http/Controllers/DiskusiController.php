@@ -73,7 +73,7 @@ class DiskusiController extends Controller
         $data["user_id"] = Auth::user()->id;
         $transaksi = new Transaksi($data);
         $transaksi->save();
-        return redirect("/ruangdiskusi");
+        return redirect("https://wa.me/6282340968471");
     }
 
     public function activate($id)
