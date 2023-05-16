@@ -2,9 +2,9 @@
     <a href="/" class="font-black flex items-center gap-2"><img class="w-5" src="/images/logo.svg" alt="">Sultan</a>
 
     <div class="font-medium flex gap-4">
-        <a href="/">Tanya Ahli</a>
+        <a href="{{auth()->user()?(auth()->user()->role->role_name === "pakar"?"/riwayatchat":"/ruangdiskusi"):"/ruangdiskusi"}}">Tanya Ahli</a>
         <a href="/bantutani">Bantu Tani</a>
-        <a href="{{auth()->user()->role->role_name === "pakar"?"/riwayatchat":"/ruangdiskusi"}}">Ruang Diskusi</a>
+        <a href="/">Ruang Diskusi</a>
         <a href="/">Artikel</a>
         <a href="/me">Profil</a>
     </div>
