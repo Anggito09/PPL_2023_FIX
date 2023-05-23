@@ -114,6 +114,16 @@ class DiskusiController extends Controller
         return view("diskusi.chat", ["recipient" => $recipient, "chatSessions" => $chatsessions, "session" => $session]);
     }
 
+    public function riwayat()
+    {
+        if (Auth::user()->role->role_name === "petani" || Auth::user()->role->role_name === "investor") {
+            $chatsessions = ChatSession::where("user_id", Auth::user()->id)->get();
+        } else {
+            $chatsessions = ChatSession::where("to", Auth::user()->id)->get();
+        }
+        return view("diskusi.blank", ["chatSessions" => $chatsessions]);
+    }
+
     public function pushChat($id, Request $request)
     {
         if (ChatSession::where("id", $id)->where("user_id", Auth::id())->orWhere("to", Auth::id())->first()) {
@@ -142,16 +152,35 @@ class DiskusiController extends Controller
             }
             return response()->json($chats);
         }
-        return response()->json([],403);
+        return response()->json([], 403);
     }
 
-    public function riwayat()
+    public function monitor()
     {
-        if (Auth::user()->role->role_name === "petani") {
-            $chatsessions = ChatSession::where("user_id", Auth::user()->id)->get();
-        } else {
-            $chatsessions = ChatSession::where("to", Auth::user()->id)->get();
+        $users = User::all();
+        foreach ($users as $user) {
+            foreach ($user->transaksi as $transaksi) {
+                if (Carbon::now()->diffInDays($transaksi->created_at) > $transaksi->paket->durasi) {
+                    $transaksi->status = false;
+                    $transaksi->save();
+                }
+            }
         }
-        return view("diskusi.blank", ["chatSessions" => $chatsessions]);
+        $datas = [];
+        $sessions = ChatSession::all();
+        foreach ($sessions as $session) {
+            $data = [];
+            $data["petani"] = $session->user->name;
+            $data["pakar"] = $session->recipient->name;
+            $data["status"] = "nonactive";
+            $transaksis = $session->user->transaksi;
+            foreach ($transaksis as $transaksi) {
+                if ($transaksi->status) {
+                    $data["status"] = "active";
+                }
+            }
+            array_push($datas, $data);
+        }
+        return view("diskusi.monitor", ["datas" => $datas]);
     }
 }

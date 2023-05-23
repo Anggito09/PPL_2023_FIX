@@ -21,18 +21,18 @@ return new class extends Migration {
         DB::table("pakets")->insert([
             "durasi" => 7,
             "nama" => "7 Hari",
-            "harga" => 0
+            "harga" => 200000
         ]);
         DB::table("pakets")->insert([
             "durasi" => 14,
             "nama" => "14 Hari",
             "keterangan" => "PENAWARAN TERBAIK",
-            "harga" => 0
+            "harga" => 360000
         ]);
         DB::table("pakets")->insert([
             "durasi" => 30,
             "nama" => "30 Hari",
-            "harga" => 0
+            "harga" => 680000
         ]);
     }
 

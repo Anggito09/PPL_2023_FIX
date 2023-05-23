@@ -21,11 +21,11 @@
                                     <img
 
                                     @if(auth()->user()->role->role_name === "petani" || auth()->user()->role->role_name === "investor")
-                                        src="{{$chatSession->recipient->dp?$chatSession->recipient->dp:"/images/icon4.png"}}"
+                                        src="{{$chatSession->recipient->dp?"/".$chatSession->recipient->dp:"/images/icon4.png"}}"
                                     @else
-                                        src="{{$chatSession->user->dp?$chatSession->user->dp:"/images/icon4.png"}}"
+                                        src="{{$chatSession->user->dp?"/".$chatSession->user->dp:"/images/icon4.png"}}"
                                     @endif
-                                        class="h-12 object-cover rounded-full border-2 border-green bg-secondary">
+                                        class="w-12 h-12 object-cover rounded-full border-2 border-green bg-secondary">
                                     <div>
                                         @if(auth()->user()->role->role_name === "petani" || auth()->user()->role->role_name === "investor")
                                             <h2 class="font-bold italic text-xl">{{$chatSession->recipient->name}}</h2>

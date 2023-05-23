@@ -24,7 +24,7 @@
                                         <input type="radio" name="paket" id="paket{{$i}}" value="{{$paket->id}}">
                                         <label for="paket{{$i}}" class="flex flex-col gap-1">
                                             <span class="font-medium text-lg">{{$paket->nama}} @if($paket->keterangan)<span class="btn btn-primary px-2">{{$paket->keterangan}}</span>@endif</span>
-                                            <span>Rp. 00.000,00</span></label>
+                                            <span>Rp. {{number_format($paket->harga, 2, ',', '.')}}</span></label>
                                     </div>
                                 @endforeach
                             </div>
