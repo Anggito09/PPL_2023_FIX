@@ -53,17 +53,20 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/berkastani/{id}", [\App\Http\Controllers\BantutaniController::class, "filebantutani"]);
     Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
     Route::get("/bantutani", [\App\Http\Controllers\BantutaniController::class, "index"]);
-    Route::get("/ruangdiskusi", [\App\Http\Controllers\DiskusiController::class, "index"]);
-    Route::get("/chat/{id}", [\App\Http\Controllers\DiskusiController::class, "chat"]);
+    Route::get("/ruangchat", [\App\Http\Controllers\ChatController::class, "index"]);
+    Route::get("/chat/{id}", [\App\Http\Controllers\ChatController::class, "chat"]);
 
-    Route::post("/pushchat/{id}", [\App\Http\Controllers\DiskusiController::class, "pushChat"]);
-    Route::get("/fetchchat/{id}", [\App\Http\Controllers\DiskusiController::class, "fetchChat"]);
-    Route::get("/riwayatchat", [\App\Http\Controllers\DiskusiController::class, "riwayat"]);
+    Route::post("/pushchat/{id}", [\App\Http\Controllers\ChatController::class, "pushChat"]);
+    Route::get("/fetchchat/{id}", [\App\Http\Controllers\ChatController::class, "fetchChat"]);
+    Route::get("/riwayatchat", [\App\Http\Controllers\ChatController::class, "riwayat"]);
 
     Route::get("/profile/{id}", [\App\Http\Controllers\AuthController::class, "publicprofile"]);
 
+    Route::get("/ruangdiskusi", [\App\Http\Controllers\DiskusiController::class, "index"]);
+    Route::post("/diskusi", [\App\Http\Controllers\DiskusiController::class, "post"]);
+
     Route::middleware(["isadmin"])->group(function () {
-        Route::get("/activatechat/{id}", [\App\Http\Controllers\DiskusiController::class, "activate"]);
+        Route::get("/activatechat/{id}", [\App\Http\Controllers\ChatController::class, "activate"]);
 
         Route::get("/akunpetani", [\App\Http\Controllers\AdminController::class, "listpetani"]);
         Route::get("/editpetani/{id}", [\App\Http\Controllers\AdminController::class, "editpetaniform"]);
@@ -78,7 +81,7 @@ Route::middleware(["auth"])->group(function () {
         Route::post("/editpakar/{id}", [\App\Http\Controllers\AdminController::class, "editpakar"]);
 
         Route::get("/confirm/{id}", [\App\Http\Controllers\BantutaniController::class, "confirminvestasi"]);
-        Route::get("/monitor/chat", [\App\Http\Controllers\DiskusiController::class, "monitor"]);
+        Route::get("/monitor/chat", [\App\Http\Controllers\ChatController::class, "monitor"]);
     });
 
     Route::middleware(["isnotpakar"])->group(function () {
@@ -86,12 +89,12 @@ Route::middleware(["auth"])->group(function () {
     });
 
     Route::middleware(["ispetaniorinvestor"])->group(function () {
-        Route::get("/listtransaksi", [\App\Http\Controllers\PetaniController::class, "listtransaksi"]);
-        Route::get("/startchat/{id}", [\App\Http\Controllers\DiskusiController::class, "startchat"]);
-        Route::get("/pricelist", [\App\Http\Controllers\DiskusiController::class, "pricelist"]);
-        Route::post("/premium", [\App\Http\Controllers\DiskusiController::class, "createPremium"]);
-        Route::get("/confirmpayment", [\App\Http\Controllers\DiskusiController::class, "confirmform"]);
-        Route::post("/confirmpayment", [\App\Http\Controllers\DiskusiController::class, "confirm"]);
+        Route::get("/listtransaksi", [\App\Http\Controllers\ChatController::class, "listtransaksi"]);
+        Route::get("/startchat/{id}", [\App\Http\Controllers\ChatController::class, "startchat"]);
+        Route::get("/pricelist", [\App\Http\Controllers\ChatController::class, "pricelist"]);
+        Route::post("/premium", [\App\Http\Controllers\ChatController::class, "createPremium"]);
+        Route::get("/confirmpayment", [\App\Http\Controllers\ChatController::class, "confirmform"]);
+        Route::post("/confirmpayment", [\App\Http\Controllers\ChatController::class, "confirm"]);
     });
 
     Route::middleware(["ispetani"])->group(function () {

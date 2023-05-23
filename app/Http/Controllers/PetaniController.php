@@ -39,11 +39,5 @@ class PetaniController extends Controller
         Auth::login($user);
         return redirect()->intended();
     }
-
-    public function listtransaksi()
-    {
-        $transaksis = Auth::user()->transaksi;
-        return view("petani.transaksi", ["transaksis"=>$transaksis]);
-    }
 }
 
