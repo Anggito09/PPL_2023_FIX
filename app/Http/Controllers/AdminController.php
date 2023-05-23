@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,13 +36,31 @@ class AdminController extends Controller
     public function listpetani()
     {
         $petanis = User::where("role_id", Role::where("role_name", "petani")->first()->id)->get();
-        return view("admin.list.petani", ["petanis" => $petanis]);
+        $status = [];
+        foreach ($petanis as $petani){
+            foreach ($petani->transaksi as $transaksi){
+                if (Carbon::now()->diffInDays($transaksi->created_at) < $transaksi->paket->durasi && $transaksi->status) {
+                    array_push($status, true);
+                    break;
+                }
+            }
+        }
+        return view("admin.list.petani", ["petanis" => $petanis, "status"=>$status]);
     }
 
     public function listinvestor()
     {
         $investors = User::where("role_id", Role::where("role_name", "investor")->first()->id)->get();
-        return view("admin.list.investor", ["investors" => $investors]);
+        $status = [];
+        foreach ($investors as $investor){
+            foreach ($investor->transaksi as $transaksi){
+                if (Carbon::now()->diffInDays($transaksi->created_at) < $transaksi->paket->durasi && $transaksi->status) {
+                    array_push($status, true);
+                    break;
+                }
+            }
+        }
+        return view("admin.list.investor", ["investors" => $investors, "status"=>$status]);
     }
 
     public function listpakar()
@@ -144,4 +163,4 @@ class AdminController extends Controller
     }
 }
 
-       
+

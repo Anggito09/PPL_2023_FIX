@@ -38,4 +38,9 @@ class PakarController extends Controller
         Auth::login($user);
         return redirect()->intended();
     }
+
+    public function profile($id){
+        $profile = User::find($id);
+        return view("diskusi.profile", ["profile"=>$profile]);
+    }
 }

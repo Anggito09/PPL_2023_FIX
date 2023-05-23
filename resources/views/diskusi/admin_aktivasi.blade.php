@@ -8,8 +8,8 @@
                 <p>Solusi konsultasi budidaya dan investasi terpercaya langsung dengan para ahlinya di Sultan</p>
                 <div class="bg-secondary flex flex-col gap-2 p-4 w-full mt-8 rounded-xl mb-8">
                     <div class="flex self-end gap-2 bg-primary rounded-full">
-                        <a href="/" class="px-8 py-2 bg-green text-white rounded-full">Pengajuan</a>
-                        <a href="/" class="px-8 py-2">Chat</a>
+                        <a href="/ruangdiskusi" class="px-8 py-2 bg-green text-white rounded-full">Pengajuan</a>
+                        <a href="/monitor/chat" class="px-8 py-2">Chat</a>
                     </div>
                     <div class="flex flex-col gap-2">
                         @foreach($transaksis as $transaksi)

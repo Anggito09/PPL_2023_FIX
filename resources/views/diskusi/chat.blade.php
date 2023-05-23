@@ -3,8 +3,8 @@
     <div class="flex items-center justify-between bg-secondary px-4 py-2 rounded-xl">
         <div class="flex items-center gap-2">
             <img
-                src="{{$recipient->dp?$recipient->dp:"/images/icon4.png"}}"
-                class="h-12 object-cover rounded-full border-2 border-green bg-secondary">
+                src="{{$recipient->dp?"/".$recipient->dp:"/images/icon4.png"}}"
+                class="w-12 h-12 object-cover rounded-full border-2 border-green bg-secondary">
             <h1 class="font-bold text-2xl italic">{{$recipient->name}}</h1>
         </div>
         <button class="material-symbols-outlined">more_vert</button>
@@ -56,7 +56,7 @@
                                 document.querySelector("#chat-ground").scrollTo(0, document.querySelector("#chat-ground").scrollHeight);
                             });
                         }
-                    }else{
+                    } else {
                         clearInterval(intId);
                     }
                 });
