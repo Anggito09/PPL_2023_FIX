@@ -19,7 +19,7 @@ class DiskusiController extends Controller
     {
         if (Auth::user()->role->role_name === "admin") {
             $transaksis = Transaksi::all();
-            return view("diskusi.admin_aktivasi", ["transaksis" => $transaksis]);
+            return view("chat.admin_aktivasi", ["transaksis" => $transaksis]);
         } else {
             $page = $request->get("page");
             $gelar = $request->get("gelar");
@@ -43,14 +43,14 @@ class DiskusiController extends Controller
                     break;
                 }
             }
-            return view("diskusi.index", ["page" => $page, "pakars" => $pakars, "n" => $n, "gelar" => $gelar, "active" => $active]);
+            return view("chat.index", ["page" => $page, "pakars" => $pakars, "n" => $n, "gelar" => $gelar, "active" => $active]);
         }
     }
 
     public function pricelist()
     {
         $pakets = Paket::all();
-        return view("diskusi.pricelist", ["pakets" => $pakets]);
+        return view("chat.pricelist", ["pakets" => $pakets]);
     }
 
     public function createPremium(Request $request)
@@ -64,7 +64,7 @@ class DiskusiController extends Controller
 
     public function confirmform()
     {
-        return view("diskusi.confirm");
+        return view("chat.confirm");
     }
 
     public function confirm(Request $request)
@@ -111,7 +111,7 @@ class DiskusiController extends Controller
             $chatsessions = ChatSession::where("to", Auth::user()->id)->get();
             $recipient = User::find($session->user_id);
         }
-        return view("diskusi.chat", ["recipient" => $recipient, "chatSessions" => $chatsessions, "session" => $session]);
+        return view("chat.chat", ["recipient" => $recipient, "chatSessions" => $chatsessions, "session" => $session]);
     }
 
     public function riwayat()
@@ -121,7 +121,7 @@ class DiskusiController extends Controller
         } else {
             $chatsessions = ChatSession::where("to", Auth::user()->id)->get();
         }
-        return view("diskusi.blank", ["chatSessions" => $chatsessions]);
+        return view("chat.blank", ["chatSessions" => $chatsessions]);
     }
 
     public function pushChat($id, Request $request)
@@ -181,6 +181,6 @@ class DiskusiController extends Controller
             }
             array_push($datas, $data);
         }
-        return view("diskusi.monitor", ["datas" => $datas]);
+        return view("chat.monitor", ["datas" => $datas]);
     }
 }

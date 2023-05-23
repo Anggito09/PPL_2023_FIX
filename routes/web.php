@@ -60,7 +60,7 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/fetchchat/{id}", [\App\Http\Controllers\DiskusiController::class, "fetchChat"]);
     Route::get("/riwayatchat", [\App\Http\Controllers\DiskusiController::class, "riwayat"]);
 
-    Route::get("/profile/{id}", [\App\Http\Controllers\PakarController::class, "profile"]);
+    Route::get("/profile/{id}", [\App\Http\Controllers\AuthController::class, "publicprofile"]);
 
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/activatechat/{id}", [\App\Http\Controllers\DiskusiController::class, "activate"]);

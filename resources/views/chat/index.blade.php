@@ -9,9 +9,9 @@
                 <div class="flex w-full mt-8 gap-8">
                     <div class="w-1/3 flex flex-col gap-2 bg-secondary p-8 rounded-xl">
                         @if($active || auth()->user()->role->role_name === "pakar")
-                            @include("diskusi.sidebar_active")
+                            @include("chat.sidebar_active")
                         @else
-                            @include("diskusi.sidebar_nonactive")
+                            @include("chat.sidebar_nonactive")
                         @endif
                     </div>
                     <div class="flex-grow flex flex-col gap-2 bg-secondary p-8 rounded-xl">
@@ -32,7 +32,8 @@
                                             <img src="/{{$pakar->dp?$pakar->dp:"images/icon4.png"}}"
                                                  class="bg-secondary rounded border-2 border-green h-20 w-20 object-cover"
                                                  alt="">
-                                            <a @if($active) href="/startchat/{{$pakar->id}}" @endif class="btn px-4 bg-secondary">Chat</a>
+                                            <a @if($active) href="/startchat/{{$pakar->id}}"
+                                               @endif class="btn px-4 bg-secondary">Chat</a>
                                         </div>
                                         <table class="w-full">
                                             <tr>

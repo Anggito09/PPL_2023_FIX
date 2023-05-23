@@ -44,20 +44,16 @@
         const intId = setInterval(() => {
             fetch(`/fetchchat/{{$session->id}}?time=${chats[chats.length - 1] ? chats[chats.length - 1].created_at : ""}`).then(response => response.json())
                 .then(result => {
-                    if (result.status === "OK") {
-                        if (result) {
-                            result.forEach(r => {
-                                chats.push(r);
-                                if (r.user_id == {{auth()->id()}}) {
-                                    $("#chat-ground").append(`<div class="chat self-end">${r.message}<span class="text-xs font-bold self-end">${r.created_at.split("T")[1].split(".")[0].substring(0, 5)}</span></div>`);
-                                } else {
-                                    $("#chat-ground").append(`<div class="chat self-start">${r.message}<span class="text-xs font-bold self-end">${r.created_at.split("T")[1].split(".")[0].substring(0, 5)}</span></div>`);
-                                }
-                                document.querySelector("#chat-ground").scrollTo(0, document.querySelector("#chat-ground").scrollHeight);
-                            });
-                        }
-                    } else {
-                        clearInterval(intId);
+                    if (result) {
+                        result.forEach(r => {
+                            chats.push(r);
+                            if (r.user_id == {{auth()->id()}}) {
+                                $("#chat-ground").append(`<div class="chat self-end">${r.message}<span class="text-xs font-bold self-end">${r.created_at.split("T")[1].split(".")[0].substring(0, 5)}</span></div>`);
+                            } else {
+                                $("#chat-ground").append(`<div class="chat self-start">${r.message}<span class="text-xs font-bold self-end">${r.created_at.split("T")[1].split(".")[0].substring(0, 5)}</span></div>`);
+                            }
+                            document.querySelector("#chat-ground").scrollTo(0, document.querySelector("#chat-ground").scrollHeight);
+                        });
                     }
                 });
         }, 1000);
