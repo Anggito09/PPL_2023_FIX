@@ -92,7 +92,7 @@ class BantutaniController extends Controller
     {
         if (Auth::user()->role->role_name === "investor") {
             $investasis = Auth::user()->investasi;
-            return view("investor.transaksi", ["investasis" => $investasis]);
+            return view("investor.investasi", ["investasis" => $investasis]);
         } else if (Auth::user()->role->role_name === "admin") {
             $investasis = Investasi::all();
             return view("admin.listinvestasi", ["investasis" => $investasis]);

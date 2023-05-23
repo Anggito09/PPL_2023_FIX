@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
+    public function publicprofile($id){
+        $profile = User::find($id);
+        return view("auth.profile", ["profile"=>$profile]);
+    }
     public function loginform()
     {
         return view("auth.login");
