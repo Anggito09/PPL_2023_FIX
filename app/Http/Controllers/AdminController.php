@@ -37,32 +37,32 @@ class AdminController extends Controller
     {
         $petanis = User::where("role_id", Role::where("role_name", "petani")->first()->id)->get();
         $status = [];
-        foreach ($petanis as $i=>$petani){
-            foreach ($petani->transaksi as $transaksi){
-                array_push($status, false);
+        foreach ($petanis as $i => $petani) {
+            array_push($status, false);
+            foreach ($petani->transaksi as $transaksi) {
                 if (Carbon::now()->diffInDays($transaksi->created_at) < $transaksi->paket->durasi && $transaksi->status) {
                     $status[$i] = true;
                     break;
                 }
             }
         }
-        return view("admin.list.petani", ["petanis" => $petanis, "status"=>$status]);
+        return view("admin.list.petani", ["petanis" => $petanis, "status" => $status]);
     }
 
     public function listinvestor()
     {
         $investors = User::where("role_id", Role::where("role_name", "investor")->first()->id)->get();
         $status = [];
-        foreach ($investors as $i=>$investor){
-            foreach ($investor->transaksi as $transaksi){
-                array_push($status, false);
+        foreach ($investors as $i => $investor) {
+            array_push($status, false);
+            foreach ($investor->transaksi as $transaksi) {
                 if (Carbon::now()->diffInDays($transaksi->created_at) < $transaksi->paket->durasi && $transaksi->status) {
                     $status[$i] = true;
                     break;
                 }
             }
         }
-        return view("admin.list.investor", ["investors" => $investors, "status"=>$status]);
+        return view("admin.list.investor", ["investors" => $investors, "status" => $status]);
     }
 
     public function listpakar()
@@ -87,18 +87,18 @@ class AdminController extends Controller
             "email" => "required|unique:users,email," . $user->id,
             "kecamatan" => "required",
             "kabupaten" => "required",
-            "provinsi" => "required","rekening" => "required",
+            "provinsi" => "required", "rekening" => "required",
             "password" => "nullable|confirmed",
             "password_confirmation" => "nullable|same:password",
         ]);
         if ($biodata["password"]) {
             $biodata["password"] = Hash::make($biodata["password"]);
-        }else{
+        } else {
             $biodata["password"] = $user->password;
         }
-        if($request->has("premium")){
+        if ($request->has("premium")) {
             $biodata["premium"] = true;
-        }else{
+        } else {
             $biodata["premium"] = false;
         }
         $user->update($biodata);
@@ -121,13 +121,13 @@ class AdminController extends Controller
             "email" => "required|unique:users,email," . $user->id,
             "kecamatan" => "required",
             "kabupaten" => "required",
-            "provinsi" => "required","rekening" => "required",
+            "provinsi" => "required", "rekening" => "required",
             "password" => "nullable|confirmed",
             "password_confirmation" => "nullable|same:password",
         ]);
         if ($biodata["password"]) {
             $biodata["password"] = Hash::make($biodata["password"]);
-        }else{
+        } else {
             $biodata["password"] = $user->password;
         }
         $user->update($biodata);
@@ -148,16 +148,16 @@ class AdminController extends Controller
             "gender" => "required",
             "phone" => "required|regex:/(08)[0-9]{10}/",
             "gelar" => "required",
-            "email" => "required|unique:users,email,".$user->id,
+            "email" => "required|unique:users,email," . $user->id,
             "kecamatan" => "required",
             "kabupaten" => "required",
-            "provinsi" => "required","password" => "nullable|confirmed",
+            "provinsi" => "required", "password" => "nullable|confirmed",
             "password_confirmation" => "nullable|same:password",
             "npwp" => "required",
         ]);
         if ($biodata["password"]) {
             $biodata["password"] = Hash::make($biodata["password"]);
-        }else{
+        } else {
             $biodata["password"] = $user->password;
         }
         $user->update($biodata);
