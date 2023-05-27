@@ -69,6 +69,9 @@ class ChatController extends Controller
             return view("petani.transaksi", ["transaksis" => $transaksis]);
         } else if (Auth::user()->role->role_name === "investor") {
             return view("investor.transaksi", ["transaksis" => $transaksis]);
+        } else if (Auth::user()->role->role_name === "admin") {
+            $transaksis = Transaksi::all();
+            return view("admin.transaksi", ["transaksis" => $transaksis]);
         }
     }
 

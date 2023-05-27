@@ -37,10 +37,11 @@ class AdminController extends Controller
     {
         $petanis = User::where("role_id", Role::where("role_name", "petani")->first()->id)->get();
         $status = [];
-        foreach ($petanis as $petani){
+        foreach ($petanis as $i=>$petani){
             foreach ($petani->transaksi as $transaksi){
+                array_push($status, false);
                 if (Carbon::now()->diffInDays($transaksi->created_at) < $transaksi->paket->durasi && $transaksi->status) {
-                    array_push($status, true);
+                    $status[$i] = true;
                     break;
                 }
             }
@@ -52,10 +53,11 @@ class AdminController extends Controller
     {
         $investors = User::where("role_id", Role::where("role_name", "investor")->first()->id)->get();
         $status = [];
-        foreach ($investors as $investor){
+        foreach ($investors as $i=>$investor){
             foreach ($investor->transaksi as $transaksi){
+                array_push($status, false);
                 if (Carbon::now()->diffInDays($transaksi->created_at) < $transaksi->paket->durasi && $transaksi->status) {
-                    array_push($status, true);
+                    $status[$i] = true;
                     break;
                 }
             }

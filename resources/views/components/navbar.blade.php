@@ -5,7 +5,7 @@
         <a href="{{auth()->user()?(auth()->user()->role->role_name === "pakar"?"/riwayatchat":"/ruangchat"):"/ruangchat"}}">Tanya Ahli</a>
         <a href="/bantutani">Bantu Tani</a>
         <a href="/ruangdiskusi">Ruang Diskusi</a>
-        <a href="/">Artikel</a>
+        <a href="{{auth()->user()?(auth()->user()->role->role_name === "admin"?"/createartikel":"/artikel"):"/artikel"}}">Artikel</a>
         <a href="/me">Profil</a>
     </div>
 

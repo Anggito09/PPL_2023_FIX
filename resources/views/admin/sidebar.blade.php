@@ -12,5 +12,6 @@
         <a href="/akunpakar" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Akun
             Pakar</a>
         <a href="/listinvestasi" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data Transaksi Investasi</a>
+        <a href="/listtransaksi" class="font-medium text-lg bg-secondary drop-shadow-lg py-1 px-8">Data Transaksi Akun</a>
     </div>
 </div>

@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get("/home", function () {
     return redirect()->intended();
 });
+Route::get("/ruangdiskusi", [\App\Http\Controllers\DiskusiController::class, "index"]);
 
 Route::middleware(["guest"])->group(function () {
     Route::prefix("/register")->group(function () {
@@ -53,6 +54,13 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/berkastani/{id}", [\App\Http\Controllers\BantutaniController::class, "filebantutani"]);
     Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
     Route::get("/bantutani", [\App\Http\Controllers\BantutaniController::class, "index"]);
+
+    Route::get("/createartikel", function(){
+        return view("artikel.create");
+    });
+    Route::post("/createartikel", [\App\Http\Controllers\ArtikelController::class, "create"]);
+
+    Route::get("/listtransaksi", [\App\Http\Controllers\ChatController::class, "listtransaksi"]);
     Route::get("/ruangchat", [\App\Http\Controllers\ChatController::class, "index"]);
     Route::get("/chat/{id}", [\App\Http\Controllers\ChatController::class, "chat"]);
 
@@ -62,8 +70,8 @@ Route::middleware(["auth"])->group(function () {
 
     Route::get("/profile/{id}", [\App\Http\Controllers\AuthController::class, "publicprofile"]);
 
-    Route::get("/ruangdiskusi", [\App\Http\Controllers\DiskusiController::class, "index"]);
     Route::post("/diskusi", [\App\Http\Controllers\DiskusiController::class, "post"]);
+    Route::post("/comment/{id}", [\App\Http\Controllers\DiskusiController::class, "postComment"]);
 
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/activatechat/{id}", [\App\Http\Controllers\ChatController::class, "activate"]);
@@ -89,7 +97,6 @@ Route::middleware(["auth"])->group(function () {
     });
 
     Route::middleware(["ispetaniorinvestor"])->group(function () {
-        Route::get("/listtransaksi", [\App\Http\Controllers\ChatController::class, "listtransaksi"]);
         Route::get("/startchat/{id}", [\App\Http\Controllers\ChatController::class, "startchat"]);
         Route::get("/pricelist", [\App\Http\Controllers\ChatController::class, "pricelist"]);
         Route::post("/premium", [\App\Http\Controllers\ChatController::class, "createPremium"]);
