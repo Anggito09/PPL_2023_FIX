@@ -32,7 +32,7 @@
                                         @else
                                             <h2 class="font-bold italic text-xl">{{$chatSession->user->name}}</h2>
                                         @endif
-                                        <p>Lorem Ipsum</p>
+                                        <p>{{$chatSession->latestChat->message}}</p>
                                     </div>
                                 </a>
                             @endforeach

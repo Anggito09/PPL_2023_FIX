@@ -1,42 +1,106 @@
 @extends("layouts.main")
 @section("content")
-    <main class="h-screen flex items-center justify-center bg-[#EFF6E9]">
+    <main class="h-screen flex justify-center bg-[#EFF6E9]">
         <form action="/register/petani" method="POST" class="bg-secondary rounded-xl py-8 px-20 flex flex-col items-center gap-4">
             <h1 class="font-bold text-3xl">HALO, TEMAN PETANI!</h1>
             <p>Daftarkan diri anda dan mulai gunakan layanan kami segera</p>
             @csrf
             <div class="flex gap-4">
-                <div class="flex flex-col gap-4">
-                    <input class="form-input w-full" type="text" name="name" id="name" placeholder="Nama">
-                    <p class="text-red-400 text-sm">{{$errors->has("name") ? "*".$errors->first("name") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="phone" id="phone" placeholder="Nomor handphone">
-                    <p class="text-red-400 text-sm">{{$errors->has("phone") ? "*".$errors->first("phone") : ""}}</p>
-                    <input class="form-input w-full" type="email" name="email" id="email" placeholder="Email">
-                    <p class="text-red-400 text-sm">{{$errors->has("email") ? "*".$errors->first("email") : ""}}</p>
-                    <input class="form-input w-full" type="password" name="password" id="password"
-                           placeholder="Password">
-                    <p class="text-red-400 text-sm">{{$errors->has("password") ? "*".$errors->first("password") : ""}}</p>
-                    <input class="form-input w-full" type="password" name="password_confirmation"
-                           id="password_confirmation"
-                           placeholder="Konfirmasi Password">
-                    <p class="text-red-400 text-sm">{{$errors->has("password_confirmation") ? "*".$errors->first("password_confirmation") : ""}}</p>
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <input class="form-input w-full" type="text" name="name" id="name" placeholder="Nama">
+                        @if($errors->has("name"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("name")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="text" name="phone" id="phone"
+                               placeholder="Nomor handphone">
+                        @if($errors->has("phone"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("phone")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="email" name="email" id="email" placeholder="Email">
+                        @if($errors->has("email"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("email")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="password" name="password" id="password"
+                               placeholder="Password">
+                        @if($errors->has("password"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("password")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="password" name="password_confirmation"
+                               id="password_confirmation"
+                               placeholder="Konfirmasi Password">
+                        @if($errors->has("password_confirmation"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("password_confirmation")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
                 </div>
-                <div class="flex flex-col gap-4">
-                    <select class="form-input w-full" name="gender" id="gender" >
-                        <option value selected disabled>Gender</option>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                    <p class="text-red-400 text-sm">{{$errors->has("gender") ? "*".$errors->first("gender") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="rekening" id="rekening"
-                           placeholder="Nomor Rekening">
-                    <p class="text-red-400 text-sm">{{$errors->has("rekening") ? "*".$errors->first("rekening") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
-                    <p class="text-red-400 text-sm">{{$errors->has("kecamatan") ? "*".$errors->first("kecamatan") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="kabupaten" id="kabupaten" placeholder="Kabupaten">
-                    <p class="text-red-400 text-sm">{{$errors->has("kabupaten") ? "*".$errors->first("kabupaten") : ""}}</p>
-                    <input class="form-input w-full" type="text" name="provinsi" id="provinsi" placeholder="Provinsi">
-                    <p class="text-red-400 text-sm">{{$errors->has("provinsi") ? "*".$errors->first("provinsi") : ""}}</p>
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <select class="form-input w-full" name="gender" id="gender">
+                            <option value selected disabled>Gender</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                        @if($errors->has("gender"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("gender")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="text" name="rekening" id="rekening"
+                               placeholder="Nomor Rekening">
+                        @if($errors->has("rekening"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("rekening")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="text" name="kecamatan" id="kecamatan"
+                               placeholder="Kecamatan">
+                        @if($errors->has("kecamatan"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("kecamatan")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="text" name="kabupaten" id="kabupaten"
+                               placeholder="Kabupaten">
+                        @if($errors->has("kabupaten"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("kabupaten")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
+                    <div>
+                        <input class="form-input w-full" type="text" name="provinsi" id="provinsi"
+                               placeholder="Provinsi">
+                        @if($errors->has("provinsi"))
+                            <p class="text-red-400 text-sm">{{"*".$errors->first("provinsi")}}</p>
+                        @else
+                            <p class="opacity-0 text-sm">ok</p>
+                        @endif
+                    </div>
                 </div>
             </div>
             <button class="btn btn-primary w-full">Daftar</button>
@@ -45,4 +109,4 @@
         </form>
     </main>
 @stop
- 
+

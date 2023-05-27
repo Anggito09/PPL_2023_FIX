@@ -15,7 +15,7 @@
                 <div class="w-full flex gap-4">
                     <div class="flex flex-col gap-4 w-1/2">
                         <div>
-                            <h2 class="font-medium text-lg">ID Pakar</h2>
+                            <h2 class="font-medium text-lg">ID <span class="capitalize">{{$profile->role->role_name}}</span></h2>
                             <p>{{$profile->id}}</p>
                         </div>
                         <div>

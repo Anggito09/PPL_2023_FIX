@@ -21,4 +21,8 @@ class ChatSession extends Model
     public function chats(){
         return $this->hasMany(Chat::class);
     }
+
+    public function latestChat(){
+        return $this->hasOne(Chat::class)->latest();
+    }
 }
