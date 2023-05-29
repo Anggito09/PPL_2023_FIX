@@ -7,8 +7,8 @@
             <div class="bg-secondary p-8 rounded-xl">
                 <form method="POST" enctype="multipart/form-data" class="flex flex-col gap-2">
                     @csrf
-                    <label for="judul"></label><input type="text" name="judul" id="judul" placeholder="Judul Artikel" class="form-input w-full">
-                    <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea>
+                    <label for="judul"></label><input type="text" name="judul" id="judul" placeholder="Judul Artikel" value="{{$artikel->judul}}" class="form-input w-full">
+                    <textarea name="deskripsi" id="deskripsi" cols="30" rows="10">{{$artikel->deskripsi}}</textarea>
                     <input type="file" name="gambar" id="gambar" class="form-input w-full">
                     <button type="submit" class="btn btn-primary">Post</button>
                 </form>

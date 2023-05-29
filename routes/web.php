@@ -55,10 +55,14 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/listbantutani", [\App\Http\Controllers\BantutaniController::class, "listbantutani"]);
     Route::get("/bantutani", [\App\Http\Controllers\BantutaniController::class, "index"]);
 
-    Route::get("/createartikel", function(){
-        return view("artikel.create");
-    });
+    Route::get("/artikel/{id}", [\App\Http\Controllers\ArtikelController::class, "display"]);
+    Route::get("/createartikel", [\App\Http\Controllers\ArtikelController::class, "createForm"]);
     Route::post("/createartikel", [\App\Http\Controllers\ArtikelController::class, "create"]);
+    Route::get("/editartikel/{id}", [\App\Http\Controllers\ArtikelController::class, "editForm"]);
+    Route::post("/editartikel/{id}", [\App\Http\Controllers\ArtikelController::class, "edit"]);
+    Route::get("/deleteartikel/{id}", [\App\Http\Controllers\ArtikelController::class, "delete"]);
+    Route::get("/listartikel", [\App\Http\Controllers\ArtikelController::class, "list"]);
+    Route::get("/pic/artikel/{name}", [\App\Http\Controllers\ArtikelController::class, "getpic"]);
 
     Route::get("/listtransaksi", [\App\Http\Controllers\ChatController::class, "listtransaksi"]);
     Route::get("/ruangchat", [\App\Http\Controllers\ChatController::class, "index"]);
