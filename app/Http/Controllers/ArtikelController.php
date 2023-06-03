@@ -26,8 +26,8 @@ class ArtikelController extends Controller
 
     public function delete($id)
     {
-        $artikel = Artikel::find($id);
         if (Auth::user()->role->role_name === "admin") {
+            $artikel = Artikel::find($id);
             $artikel->delete();
         }
         return back();

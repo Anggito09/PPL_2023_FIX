@@ -37,12 +37,12 @@
                                         </div>
                                         <table class="w-full">
                                             <tr>
-                                                <td class="w-1/3 font-bold">Nama</td>
-                                                <td>: {{$pakar->name}}</td>
+                                                <td class="w-1/3 font-bold align-bottom">Nama</td>
+                                                <td class="align-bottom">: {{$pakar->name}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="w-1/3 font-bold">Gelar</td>
-                                                <td>: {{$pakar->gelar}}</td>
+                                                <td class="w-1/3 font-bold align-bottom">Gelar</td>
+                                                <td class="align-bottom">: {{$pakar->gelar}}</td>
                                             </tr>
                                         </table>
                                         <a href="/profile/{{$pakar->id}}" class="self-end">Selengkapnya..</a>

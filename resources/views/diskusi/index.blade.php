@@ -4,7 +4,7 @@
         @include("components.navbar")
         <div class="flex flex-col items-center p-4">
             <h1 class="font-bold text-3xl">Ruang Diskusi</h1>
-            <div class="w-full p-4 rounded-xl bg-secondary">
+            <div class="mt-8 w-full p-4 rounded-xl bg-secondary">
                 @auth
                     <form action="/diskusi" method="POST"
                           class="w-full flex items-start bg-primary p-2 rounded-xl gap-2">
@@ -12,26 +12,38 @@
                         <img src="{{auth()->user()->dp?"/".auth()->user()->dp:"/images/icon4.png"}}" alt=""
                              class="w-14 h-14 rounded-full border-2 border-dark-green">
                         <textarea name="topic" class="resize-none flex-grow"></textarea>
-                        <button class="btn btn-primary px-8">Post</button>
+                        <button class="btn btn-primary px-8">Kirim</button>
                     </form>
                 @endauth
                 <div class="w-full flex flex-col gap-4 mx-2 mt-8">
                     @foreach($diskusis as $diskusi)
                         <div class="flex gap-8 px-2">
-                            <img src="{{$diskusi->user->dp?"/".$diskusi->user->dp:"/images/icon4.png"}}" alt=""
+                            <img src="{{"/images/icon4.png"}}" alt=""
                                  class="w-14 h-14 rounded-full border-2 border-dark-green">
                             <div class="flex-grow">
                                 <div class="flex items-end justify-between">
                                     <h2 class="font-bold text-2xl">{{$diskusi->topic}}</h2>
                                     <h2 class="font-medium text-lg">{{$diskusi->created_at}}</h2>
                                 </div>
-                                <div class="flex gap-4">
-                                    <p class="italic">Oleh <a href="/profile/{{$diskusi->user->id}}"
-                                                              class="font-bold">{{$diskusi->user->name}}</a></p>
+                                <div class="flex justify-between">
+                                    <div class="flex gap-4">
+                                        <p class="italic">Oleh <span
+                                                class="font-bold">{{$diskusi->user->name[0].str_repeat('*',strlen($diskusi->user->name)-2).$diskusi->user->name[-1]}}</span>
+                                        </p>
+                                        @auth
+                                            @if(auth()->user()->role->role_name === "pakar")
+                                                <button class="font-bold"
+                                                        data-modal-target="comment{{$diskusi->id}}-modal"
+                                                        data-modal-toggle="comment{{$diskusi->id}}-modal">Balas
+                                                </button>
+                                            @endif
+                                        @endauth
+                                    </div>
                                     @auth
-                                        <button class="font-bold" data-modal-target="comment{{$diskusi->id}}-modal"
-                                                data-modal-toggle="comment{{$diskusi->id}}-modal">Balas
-                                        </button>
+                                        @if(auth()->user()->role->role_name === "admin")
+                                            <a href="/delete/diskusi/{{$diskusi->id}}"
+                                               class="bg-primary p-2 rounded-xl">Hapus Pesan</a>
+                                        @endif
                                     @endauth
 
                                     <div id="comment{{$diskusi->id}}-modal" tabindex="-1" aria-hidden="true"
@@ -75,9 +87,8 @@
                                     @foreach($diskusi->diskusiKomens as $komen)
                                         <div class="w-full flex justify-between items-end">
                                             <p>{{$komen->comment}}</p>
-                                            <p class="italic text-end">Dibalas Oleh <a
-                                                    href="/profile/{{$komen->user->id}}"
-                                                    class="font-bold">{{$komen->user->name}}</a></p>
+                                            <p class="italic text-end">Dibalas Oleh <span
+                                                    class="font-bold">{{$komen->user->name}}</span></p>
                                         </div>
                                     @endforeach
                                 </div>

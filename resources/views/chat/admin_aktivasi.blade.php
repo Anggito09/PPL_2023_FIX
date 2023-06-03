@@ -12,10 +12,16 @@
                         <a href="/monitor/chat" class="px-8 py-2">Chat</a>
                     </div>
                     <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-center p-4 bg-green rounded-xl">
+                            <h2 class="w-1/4 text-white">Paket</h2>
+                            <h2 class="w-1/4 text-white">Nama</h2>
+                            <h2 class="w-1/4 text-white text-center">Tanggal</h2>
+                            <div class="w-1/4 text-white flex justify-end px-4">Aksi</div>
+                        </div>
                         @foreach($transaksis as $transaksi)
                             <div class="flex justify-between items-center p-4 bg-primary rounded-xl">
                                 <h2 class="w-1/4">Paket Premium</h2>
-                                <h2 class="w-1/4">{{$transaksi->user->id}}</h2>
+                                <h2 class="w-1/4">{{$transaksi->user->name}}</h2>
                                 <h2 class="w-1/4 text-center">{{$transaksi->status?$transaksi->created_at:"-"}}</h2>
                                 <div class="w-1/4 flex justify-end">
                                     <a href="/activatechat/{{$transaksi->id}}" class="btn btn-primary px-4">

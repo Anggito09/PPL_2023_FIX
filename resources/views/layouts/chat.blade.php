@@ -20,11 +20,11 @@
                                 <a href="/chat/{{$chatSession->id}}" class="flex items-center gap-2 w-full">
                                     <img
 
-                                    @if(auth()->user()->role->role_name === "petani" || auth()->user()->role->role_name === "investor")
-                                        src="{{$chatSession->recipient->dp?"/".$chatSession->recipient->dp:"/images/icon4.png"}}"
-                                    @else
-                                        src="{{$chatSession->user->dp?"/".$chatSession->user->dp:"/images/icon4.png"}}"
-                                    @endif
+                                        @if(auth()->user()->role->role_name === "petani" || auth()->user()->role->role_name === "investor")
+                                            src="{{$chatSession->recipient->dp?"/".$chatSession->recipient->dp:"/images/icon4.png"}}"
+                                        @else
+                                            src="{{$chatSession->user->dp?"/".$chatSession->user->dp:"/images/icon4.png"}}"
+                                        @endif
                                         class="w-12 h-12 object-cover rounded-full border-2 border-green bg-secondary">
                                     <div>
                                         @if(auth()->user()->role->role_name === "petani" || auth()->user()->role->role_name === "investor")
@@ -32,7 +32,11 @@
                                         @else
                                             <h2 class="font-bold italic text-xl">{{$chatSession->user->name}}</h2>
                                         @endif
-                                        <p>{{$chatSession->latestChat->message}}</p>
+                                        @if($chatSession->latestChat)
+                                            <p>{{$chatSession->latestChat->message}}</p>
+                                        @else
+                                            <p>{{$chatSession->user->name}} mencoba menghubungi</p>
+                                        @endif
                                     </div>
                                 </a>
                             @endforeach
