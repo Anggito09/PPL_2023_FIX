@@ -6,7 +6,9 @@
         <div class="bg-secondary h-[calc(100%-5rem)] mx-4 p-4 rounded-xl overflow-y-scroll">
             <div class="bg-primary rounded-xl px-4 py-2 flex items-center justify-between">
                 <h2 class="font-bold">Data Artikel</h2>
-                <a href="/createartikel" class="px-4 py-2 bg-secondary rounded-xl">Tambah Data</a>
+                @if(auth()->user()->role->role_name === "admin" || auth()->user()->role->role_name === "pakar")
+                    <a href="/createartikel" class="px-4 py-2 bg-secondary rounded-xl">Tambah Data</a>
+                @endif
             </div>
             <table class="w-full mt-8">
                 <tr>
@@ -21,9 +23,17 @@
                         <td class="text-center"><img src="/pic/{{$artikel->gambar}}" alt=""></td>
                         <td class="text-center">{{$artikel->judul}}</td>
                         <td class="flex justify-center py-10 gap-2">
-                            <a href="/artikel/{{$artikel->id}}" class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span class="material-symbols-outlined">visibility</span></a>
-                            <a href="/editartikel/{{$artikel->id}}" class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span class="material-symbols-outlined">edit</span></a>
-                            <a href="/deleteartikel/{{$artikel->id}}" class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span class="material-symbols-outlined">delete</span></a>
+                            <a href="/artikel/{{$artikel->id}}"
+                               class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span
+                                    class="material-symbols-outlined">visibility</span></a>
+                            @if(auth()->user()->role->role_name === "admin" || auth()->user()->role->role_name === "pakar")
+                                <a href="/editartikel/{{$artikel->id}}"
+                                   class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span
+                                        class="material-symbols-outlined">edit</span></a>
+                                <a href="/deleteartikel/{{$artikel->id}}"
+                                   class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span
+                                        class="material-symbols-outlined">delete</span></a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

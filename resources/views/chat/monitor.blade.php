@@ -16,9 +16,9 @@
                         <div class="bg-primary p-4 flex gap-4 items-center rounded-xl">
                             <span class="w-8 h-8 @if($data["status"] == 'active') bg-lime-400 @else bg-red-600 @endif rounded-full"></span>
                             <div class="flex-grow flex justify-between">
-                                <span class="font-bold">{{$data["petani"]}}</span>
-                                <span>{{$data["status"]}}</span>
-                                <span class="font-bold">{{$data["pakar"]}}</span>
+                                <span class="w-1/3 font-bold">{{$data["petani"]}}</span>
+                                <span class="w-1/3 text-center">{{$data["status"]}}</span>
+                                <span class="w-1/3 text-end font-bold">{{$data["pakar"]}}</span>
                             </div>
                         </div>
                         @endforeach

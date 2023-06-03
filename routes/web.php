@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $artikels = \App\Models\Artikel::limit(4)->get();
+    $diskusi = \App\Models\Diskusi::latest('created_at')->first();
+    return view('welcome',["artikels"=>$artikels, "diskusi"=>$diskusi]);
 });
 Route::get("/home", function () {
     return redirect()->intended();
@@ -76,6 +78,7 @@ Route::middleware(["auth"])->group(function () {
 
     Route::post("/diskusi", [\App\Http\Controllers\DiskusiController::class, "post"]);
     Route::post("/comment/{id}", [\App\Http\Controllers\DiskusiController::class, "postComment"]);
+    Route::get("/delete/diskusi/{id}", [\App\Http\Controllers\DiskusiController::class, "delete"]);
 
     Route::middleware(["isadmin"])->group(function () {
         Route::get("/activatechat/{id}", [\App\Http\Controllers\ChatController::class, "activate"]);

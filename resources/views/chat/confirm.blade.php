@@ -20,7 +20,7 @@
                         <div class="w-full flex justify-between">
                             <div class="flex flex-col gap-2">
                                 <label for="phone">Nomor Telepon</label>
-                                <input type="tel" name="phone" id="phone" class="form-input">
+                                <input required type="tel" name="phone" id="phone" class="form-input">
                             </div>
                             <ul class="ms-4 list-disc w-1/2 flex flex-col gap-4">
                                 <li>Fitur Tanya Ahli dapat diakses selama 24 Jam, dan untuk pesan akan dibalas pada
