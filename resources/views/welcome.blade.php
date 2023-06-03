@@ -30,42 +30,44 @@
                     <p>Baca berbagai informasi terbaru seputar agrikultur untuk meningkatkan pemahamanmu!</p>
                 </div>
                 <div class="flex gap-4 items-center flex-grow">
-                    <div class="w-1/6 h-56 bg-[#EFF6E9] drop-shadow-lg rounded-xl">
-                        <img src="/pic/{{$artikels[0]->gambar}}"
-                             class="rounded-t-xl h-36 w-full object-cover object-top"
-                             alt="">
-                        <h2 class="font-medium px-2">{{$artikels[0]->judul}}</h2>
-                        <div class="p-2">
-                            <p class="text-xs">{!!substr($artikels[0]->deskripsi, 0, 45) !!}...</p>
+                    @if($artikels->count() > 3)
+                        <div class="w-1/6 h-56 bg-[#EFF6E9] drop-shadow-lg rounded-xl">
+                            <img src="/pic/{{$artikels[0]->gambar}}"
+                                 class="rounded-t-xl h-36 w-full object-cover object-top"
+                                 alt="">
+                            <h2 class="font-medium px-2">{{$artikels[0]->judul}}</h2>
+                            <div class="p-2">
+                                <p class="text-xs">{!!substr($artikels[0]->deskripsi, 0, 45) !!}...</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-1/4 bg-[#EFF6E9] flex flex-col gap-2 drop-shadow-lg pb-4 rounded-3xl">
-                        <img src="/pic/{{$artikels[1]->gambar}}"
-                             class="rounded-t-xl h-36 w-full object-cover object-top"
-                             alt="">
-                        <h2 class="font-medium px-2">{{$artikels[1]->judul}}</h2>
-                        <div class="p-2">
-                            <p class="text-xs">{!!substr($artikels[1]->deskripsi, 0, 99) !!}...</p>
+                        <div class="w-1/4 bg-[#EFF6E9] flex flex-col gap-2 drop-shadow-lg pb-4 rounded-3xl">
+                            <img src="/pic/{{$artikels[1]->gambar}}"
+                                 class="rounded-t-xl h-36 w-full object-cover object-top"
+                                 alt="">
+                            <h2 class="font-medium px-2">{{$artikels[1]->judul}}</h2>
+                            <div class="p-2">
+                                <p class="text-xs">{!!substr($artikels[1]->deskripsi, 0, 99) !!}...</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-1/6 h-56 bg-[#EFF6E9] drop-shadow-lg rounded-xl">
-                        <img src="/pic/{{$artikels[2]->gambar}}"
-                             class="rounded-t-xl h-36 w-full object-cover object-top"
-                             alt="">
-                        <h2 class="font-medium px-2">{{$artikels[2]->judul}}</h2>
-                        <div class="p-2">
-                            <p class="text-xs">{!!substr($artikels[1]->deskripsi, 0, 45) !!}...</p>
+                        <div class="w-1/6 h-56 bg-[#EFF6E9] drop-shadow-lg rounded-xl">
+                            <img src="/pic/{{$artikels[2]->gambar}}"
+                                 class="rounded-t-xl h-36 w-full object-cover object-top"
+                                 alt="">
+                            <h2 class="font-medium px-2">{{$artikels[2]->judul}}</h2>
+                            <div class="p-2">
+                                <p class="text-xs">{!!substr($artikels[1]->deskripsi, 0, 45) !!}...</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-1/6 h-56 bg-[#EFF6E9] drop-shadow-lg rounded-xl">
-                        <img src="/pic/{{$artikels[3]->gambar}}"
-                             class="rounded-t-xl h-36 w-full object-cover object-top"
-                             alt="">
-                        <h2 class="font-medium px-2">{{$artikels[3]->judul}}</h2>
-                        <div class="p-2">
-                            <p class="text-xs">{!!substr($artikels[1]->deskripsi, 0, 45) !!}...</p>
+                        <div class="w-1/6 h-56 bg-[#EFF6E9] drop-shadow-lg rounded-xl">
+                            <img src="/pic/{{$artikels[3]->gambar}}"
+                                 class="rounded-t-xl h-36 w-full object-cover object-top"
+                                 alt="">
+                            <h2 class="font-medium px-2">{{$artikels[3]->judul}}</h2>
+                            <div class="p-2">
+                                <p class="text-xs">{!!substr($artikels[1]->deskripsi, 0, 45) !!}...</p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <a href="/listartikel"
                        class="rounded-full w-10 h-10 border-2 border-white flex items-center justify-center text-white text-2xl">
                         &rsaquo;
@@ -171,7 +173,8 @@
             </div>
             <div class="flex flex-col gap-1">
                 <a href="/">Beranda</a>
-                <a href="{{auth()->user()?(auth()->user()->role->role_name === "pakar"?"/riwayatchat":"/ruangchat"):"/ruangchat"}}">Tanya Ahli</a>
+                <a href="{{auth()->user()?(auth()->user()->role->role_name === "pakar"?"/riwayatchat":"/ruangchat"):"/ruangchat"}}">Tanya
+                    Ahli</a>
                 <a href="/ruangdiskusi">Ruang Diskusi</a>
                 <a href="/listartikel">Artikel</a>
                 <a href="/me">Profile</a>
