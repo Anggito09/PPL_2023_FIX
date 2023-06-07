@@ -10,8 +10,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use MongoDB\Driver\Session;
 
 class ChatController extends Controller
 {
@@ -73,6 +71,7 @@ class ChatController extends Controller
             $transaksis = Transaksi::all();
             return view("admin.transaksi", ["transaksis" => $transaksis]);
         }
+        return back();
     }
 
     public function confirmform()
@@ -185,11 +184,11 @@ class ChatController extends Controller
             $data = [];
             $data["petani"] = $session->user->name;
             $data["pakar"] = $session->recipient->name;
-            $data["status"] = "nonactive";
+            $data["status"] = "Tidak Aktif";
             $transaksis = $session->user->transaksi;
             foreach ($transaksis as $transaksi) {
                 if ($transaksi->status) {
-                    $data["status"] = "active";
+                    $data["status"] = "Aktif";
                 }
             }
             array_push($datas, $data);
