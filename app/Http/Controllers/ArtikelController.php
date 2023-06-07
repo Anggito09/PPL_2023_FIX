@@ -41,8 +41,11 @@ class ArtikelController extends Controller
 
     public function editForm($id)
     {
-        $artikel = Artikel::find($id);
-        return view("artikel.edit", ["artikel" => $artikel]);
+        if (Auth::user()->role->role_name === "admin") {
+            $artikel = Artikel::find($id);
+            return view("artikel.edit", ["artikel" => $artikel]);
+        }
+        return back();
     }
 
     public function edit($id, Request $request)
@@ -65,7 +68,10 @@ class ArtikelController extends Controller
 
     public function createForm()
     {
-        return view("artikel.create");
+        if (Auth::user()->role->role_name === "admin") {
+            return view("artikel.create");
+        }
+        return back();
     }
 
     public function create(Request $request)

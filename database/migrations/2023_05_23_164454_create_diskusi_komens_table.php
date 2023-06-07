@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('diskusi_komens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("diskusi_id")->constrained();
+            $table->foreignId("diskusi_id")->unique()->constrained();
             $table->foreignId("user_id")->constrained();
-            $table->string("comment");
+            $table->text("comment");
             $table->timestamps();
         });
     }

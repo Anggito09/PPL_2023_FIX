@@ -172,7 +172,13 @@ return [
         ],
         "password" => [
             "required" => "Password harus diisi",
-            "confirmed" => "Password tidak tervalidasi"
+            "confirmed" => "Password tidak tervalidasi",
+            'min' => [
+                'string' => 'Password minimal :min karakter',
+            ],
+            'max' => [
+                'string' => 'Password maksimal :max karakter',
+            ],
         ],
         "phone" => [
             "required" => "Nomor Telepon harus diisi",

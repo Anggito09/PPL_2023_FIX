@@ -89,14 +89,14 @@
                                     <p>Oleh: <span
                                             class="font-bold">{{$diskusi->user->name[0].str_repeat('*',strlen($diskusi->user->name)-2).$diskusi->user->name[-1]}}</span>
                                     </p>
-                                    @if($diskusi->diskusiKomens->count() > 0)
+                                    @if($diskusi->diskusiKomens)
                                         <p class="text-blue-600">Dijawab
-                                            oleh {{$diskusi->diskusiKomens[0]->user->name}}</p>
+                                            oleh {{$diskusi->diskusiKomens->user->name}}</p>
                                     @endif
                                 </div>
                             </div>
-                            @if($diskusi->diskusiKomens->count() > 0)
-                                <p class="text-xl">{{$diskusi->diskusiKomens[0]->comment}}</p>
+                            @if($diskusi->diskusiKomens)
+                                <p class="text-xl">{{$diskusi->diskusiKomens->comment}}</p>
                             @endif
                         </div>
                     </div>
@@ -162,6 +162,9 @@
                     BERSAMA-SAMA
                     BERTANGGUNG JAWAB SEPENUHNYA ATAS KEBENARAN INFORMASI YANG TERCANTUM DALAM LAYANAN UTUN DANA
                     INI”</p>
+                <div class="flex justify-end">
+                    <a href="/document/Syarat ketentuan.pdf" class="border-2 border-green px-4 py-1 rounded-xl mt-2 flex items-center gap-1"><span class="material-icons">description</span>Syarat dan Ketentuan</a>
+                </div>
             </div>
         </section>
     </main>

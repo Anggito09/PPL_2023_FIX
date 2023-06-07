@@ -65,7 +65,7 @@ class AuthController extends Controller
                 "kecamatan" => "required",
                 "kabupaten" => "required",
                 "provinsi" => "required", "npwp" => "required",
-                "password" => "nullable|confirmed",
+                "password" => "nullable|string|min:8|max:8|confirmed",
                 "password_confirmation" => "nullable|same:password",
                 "dp" => "nullable"
             ]);
@@ -78,7 +78,7 @@ class AuthController extends Controller
                 "kecamatan" => "required",
                 "kabupaten" => "required",
                 "provinsi" => "required", "rekening" => "nullable",
-                "password" => "nullable|confirmed",
+                "password" => "nullable|string|min:8|max:8|confirmed",
                 "password_confirmation" => "nullable|same:password",
                 "dp" => "nullable"
             ]);
@@ -87,7 +87,7 @@ class AuthController extends Controller
                 "name" => "required",
                 "phone" => "required|regex:/(08)[0-9]{10}/",
                 "email" => "required|unique:users,email," . Auth::user()->id,
-                "password" => "nullable|confirmed",
+                "password" => "nullable|string|min:8|max:8|confirmed",
                 "password_confirmation" => "nullable|same:password",
                 "dp" => "nullable"
             ]);
