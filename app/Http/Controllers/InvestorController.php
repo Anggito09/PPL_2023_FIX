@@ -22,11 +22,10 @@ class InvestorController extends Controller
             "gender" => "required",
             "phone" => "required|regex:/(08)[0-9]{10}/",
             "email" => "required|unique:users",
-//            "address" => "required",
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required",
-            "password" => "required|confirmed",
+            "password" => "required|string|min:8|max:8|confirmed",
             "password_confirmation" => "required|same:password",
             "rekening" => "required"
         ]);

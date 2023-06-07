@@ -26,7 +26,7 @@
                             <a href="/artikel/{{$artikel->id}}"
                                class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span
                                     class="material-symbols-outlined">visibility</span></a>
-                            @if(auth()->user()->role->role_name === "admin" || auth()->user()->role->role_name === "pakar")
+                            @if(auth()->user()->role->role_name === "admin")
                                 <a href="/editartikel/{{$artikel->id}}"
                                    class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl"><span
                                         class="material-symbols-outlined">edit</span></a>

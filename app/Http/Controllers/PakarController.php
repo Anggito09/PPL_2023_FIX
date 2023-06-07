@@ -27,7 +27,7 @@ class PakarController extends Controller
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required",
-            "password" => "required|confirmed",
+            "password" => "required|string|min:8|max:8|confirmed",
             "password_confirmation" => "required|same:password",
             "npwp" => "required",
         ]);

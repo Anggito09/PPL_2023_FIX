@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('diskusis', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained();
-            $table->string("topic");
+            $table->text("topic");
+            $table->boolean("visible")->default(true);
             $table->timestamps();
         });
     }

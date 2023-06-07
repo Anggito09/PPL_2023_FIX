@@ -10,17 +10,22 @@
                     <thead class="border-b-2 border-green">
                     <tr>
                         <th>Tanggal dan Waktu</th>
+                        <th>Status</th>
                         <th>Nominal</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($tanis as $tani)
                         <tr>
-                            <td class="text-center">
-                                <a href="/bantutani/{{$tani->id}}">{{$tani->created_at}}</a>
+                            <td class="flex items-center justify-center gap-1">
+                                <a href="/bantutani/{{$tani->id}}" class="material-icons">visibility</a>
+                                <span>{{$tani->created_at}}</span>
                             </td>
                             <td class="text-center">
-                                <a href="/bantutani/{{$tani->id}}">{{$tani->fund}}</a>
+                                <span>{{$tani->investasis ? "Didanai" : "Belum Didanai"}}</span>
+                            </td>
+                            <td class="text-center">
+                                <span>{{$tani->fund}}</span>
                             </td>
                         </tr>
                     @endforeach

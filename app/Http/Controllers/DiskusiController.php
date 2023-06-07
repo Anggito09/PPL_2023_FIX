@@ -37,7 +37,8 @@ class DiskusiController extends Controller
         if(Auth::user()->role->role_name === "admin"){
             DiskusiKomen::where("diskusi_id", $id)->delete();
             $diskusi = Diskusi::find($id);
-            $diskusi->delete();
+            $diskusi->visible = !$diskusi->visible;
+            $diskusi->save();
         }
         return back();
     }

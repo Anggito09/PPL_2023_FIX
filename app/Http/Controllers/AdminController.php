@@ -22,7 +22,7 @@ class AdminController extends Controller
             "name" => "required",
             "phone" => "required|regex:/(08)[0-9]{10}/",
             "email" => "required|unique:users",
-            "password" => "required|confirmed",
+            "password" => "required|string|min:8|max:8|confirmed",
             "password_confirmation" => "required|same:password",
         ]);
         $biodata["password"] = Hash::make($biodata["password"]);
@@ -88,7 +88,7 @@ class AdminController extends Controller
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required", "rekening" => "required",
-            "password" => "nullable|confirmed",
+            "password" => "nullable|string|min:8|max:8|confirmed",
             "password_confirmation" => "nullable|same:password",
         ]);
         if ($biodata["password"]) {
@@ -122,7 +122,7 @@ class AdminController extends Controller
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required", "rekening" => "required",
-            "password" => "nullable|confirmed",
+            "password" => "nullable|string|min:8|max:8|confirmed",
             "password_confirmation" => "nullable|same:password",
         ]);
         if ($biodata["password"]) {
@@ -151,7 +151,8 @@ class AdminController extends Controller
             "email" => "required|unique:users,email," . $user->id,
             "kecamatan" => "required",
             "kabupaten" => "required",
-            "provinsi" => "required", "password" => "nullable|confirmed",
+            "provinsi" => "required",
+            "password" => "nullable|string|min:8|max:8|confirmed",
             "password_confirmation" => "nullable|same:password",
             "npwp" => "required",
         ]);

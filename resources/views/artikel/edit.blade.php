@@ -7,9 +7,18 @@
             <div class="bg-secondary p-8 rounded-xl">
                 <form method="POST" enctype="multipart/form-data" class="flex flex-col gap-2">
                     @csrf
-                    <label for="judul"></label><input type="text" name="judul" id="judul" placeholder="Judul Artikel" value="{{$artikel->judul}}" class="form-input w-full">
-                    <textarea name="deskripsi" id="deskripsi" cols="30" rows="10">{{$artikel->deskripsi}}</textarea>
-                    <input type="file" name="gambar" id="gambar" class="form-input w-full">
+                    <div>
+                        <label for="judul">Judul</label><input type="text" name="judul" id="judul" placeholder="Judul Artikel" value="{{$artikel->judul}}" class="form-input w-full">
+                        <p class="text-red-400 text-sm">{{$errors->has("judul") ? $errors->first("judul") : ""}}</p>
+                    </div>
+                    <div>
+                        <label for="deskripsi">Deskripsi</label><textarea name="deskripsi" id="deskripsi" cols="30" rows="10">{{$artikel->deskripsi}}</textarea>
+                        <p class="text-red-400 text-sm">{{$errors->has("deskripsi") ? $errors->first("deskripsi") : ""}}</p>
+                    </div>
+                    <div>
+                        <label for="gambar">Gambar</label><input type="file" name="gambar" id="gambar" class="form-input w-full">
+                        <p class="text-red-400 text-sm">{{$errors->has("gambar") ? $errors->first("gambar") : ""}}</p>
+                    </div>
                     <button type="submit" class="btn btn-primary">Post</button>
                 </form>
             </div>
