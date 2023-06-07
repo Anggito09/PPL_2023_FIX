@@ -12,6 +12,14 @@
                         <a href="/monitor/chat" class="px-8 py-2 bg-green text-white rounded-full">Chat</a>
                     </div>
                     <div class="flex flex-col gap-2">
+                        <div class="bg-green text-white p-4 flex gap-4 items-center rounded-xl">
+                            <span class="w-8 h-8 rounded-full"></span>
+                            <div class="flex-grow flex justify-between">
+                                <span class="w-1/3 font-bold">Nama</span>
+                                <span class="w-1/3 text-center font-bold">Status</span>
+                                <span class="w-1/3 text-end font-bold">Pakar</span>
+                            </div>
+                        </div>
                         @foreach($datas as $data)
                         <div class="bg-primary p-4 flex gap-4 items-center rounded-xl">
                             <span class="w-8 h-8 @if($data["status"] == 'active') bg-lime-400 @else bg-red-600 @endif rounded-full"></span>

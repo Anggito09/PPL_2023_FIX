@@ -68,7 +68,7 @@ class ArtikelController extends Controller
 
     public function createForm()
     {
-        if (Auth::user()->role->role_name === "admin") {
+        if (Auth::user()->role->role_name === "admin" || Auth::user()->role->role_name === "pakar") {
             return view("artikel.create");
         }
         return back();

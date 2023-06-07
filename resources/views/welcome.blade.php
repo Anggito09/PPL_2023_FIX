@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             @if($diskusi->diskusiKomens)
-                                <p class="text-xl">{{$diskusi->diskusiKomens->comment}}</p>
+                                <p class="text-xl">{{substr($diskusi->diskusiKomens->comment, 0, 200)}}...</p>
                             @endif
                         </div>
                     </div>

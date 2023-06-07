@@ -185,11 +185,11 @@ class ChatController extends Controller
             $data = [];
             $data["petani"] = $session->user->name;
             $data["pakar"] = $session->recipient->name;
-            $data["status"] = "nonactive";
+            $data["status"] = "Tidak Aktif";
             $transaksis = $session->user->transaksi;
             foreach ($transaksis as $transaksi) {
                 if ($transaksi->status) {
-                    $data["status"] = "active";
+                    $data["status"] = "Aktif";
                 }
             }
             array_push($datas, $data);
