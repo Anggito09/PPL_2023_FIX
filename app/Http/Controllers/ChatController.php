@@ -73,6 +73,7 @@ class ChatController extends Controller
             $transaksis = Transaksi::all();
             return view("admin.transaksi", ["transaksis" => $transaksis]);
         }
+        return back();
     }
 
     public function confirmform()
